@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SklepModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dostawcy">
+    <Key>
+      <PropertyRef Name="DostawcaId" />
+    </Key>
+    <Property Name="DostawcaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazwaFirmy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NazwaKontaktu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Region" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefon" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Produkty__Dostaw__15502E78" FromRole="Dostawcy" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Egzemplarz">
+    <Key>
+      <PropertyRef Name="KodKreskowy" />
+    </Key>
+    <Property Name="KodKreskowy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Egzemplar__Produ__37A5467C" FromRole="Egzemplarz" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Kategoria">
+    <Key>
+      <PropertyRef Name="KategoriaId" />
+    </Key>
+    <Property Name="KategoriaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NazwaKategorii" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Produkty__Katego__145C0A3F" FromRole="Kategoria" ToRole="Produkty" />
+  </EntityType>
+  <EntityType Name="Klienci">
+    <Key>
+      <PropertyRef Name="KlientId" />
+    </Key>
+    <Property Name="KlientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Haslo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Firma" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NIP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="REGON" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_1" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tel_2" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Zamowienia" Relationship="Self.FK__Zamowieni__Klien__1BFD2C07" FromRole="Klienci" ToRole="Zamowienia" />
+  </EntityType>
+  <EntityType Name="Pracownicy">
+    <Key>
+      <PropertyRef Name="PracownikId" />
+    </Key>
+    <Property Name="PracownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Haslo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Uprawnienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Tel_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Kraj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Zamowienia" Relationship="Self.FK__Zamowieni__Praco__1CF15040" FromRole="Pracownicy" ToRole="Zamowienia" />
+  </EntityType>
+  <EntityType Name="Produkty">
+    <Key>
+      <PropertyRef Name="ProduktId" />
+    </Key>
+    <Property Name="ProduktId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriaId" Type="Int32" Nullable="false" />
+    <Property Name="DostawcaId" Type="Int32" Nullable="false" />
+    <Property Name="NazwaProduktu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IloscNaJednostke" Type="Int32" Nullable="false" />
+    <Property Name="CenaJednostkowa" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="LiczbaProduktow" Type="Int32" Nullable="false" />
+    <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Dostawcy" Relationship="Self.FK__Produkty__Dostaw__15502E78" FromRole="Produkty" ToRole="Dostawcy" />
+    <NavigationProperty Name="Egzemplarz" Relationship="Self.FK__Egzemplar__Produ__37A5467C" FromRole="Produkty" ToRole="Egzemplarz" />
+    <NavigationProperty Name="Kategoria" Relationship="Self.FK__Produkty__Katego__145C0A3F" FromRole="Produkty" ToRole="Kategoria" />
+    <NavigationProperty Name="SzczegolyZamowienia" Relationship="Self.FK__Szczegoly__Produ__2C3393D0" FromRole="Produkty" ToRole="SzczegolyZamowienia" />
+    <NavigationProperty Name="Zdjecia" Relationship="Self.FK__Zdjecia__Produkt__20C1E124" FromRole="Produkty" ToRole="Zdjecia" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SzczegolyZamowienia">
+    <Key>
+      <PropertyRef Name="SzczegolyZamId" />
+    </Key>
+    <Property Name="SzczegolyZamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ZamowienieId" Type="Int32" />
+    <Property Name="ProduktId" Type="Int32" />
+    <Property Name="Cena" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Ilosc" Type="Int32" Nullable="false" />
+    <Property Name="Rabat" Type="Single" Nullable="false" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Szczegoly__Produ__2C3393D0" FromRole="SzczegolyZamowienia" ToRole="Produkty" />
+    <NavigationProperty Name="Zamowienia" Relationship="Self.FK__Szczegoly__Zamow__2B3F6F97" FromRole="SzczegolyZamowienia" ToRole="Zamowienia" />
+  </EntityType>
+  <EntityType Name="Zamowienia">
+    <Key>
+      <PropertyRef Name="ZamowienieId" />
+    </Key>
+    <Property Name="ZamowienieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KlientId" Type="Int32" />
+    <Property Name="PracownikId" Type="Int32" />
+    <Property Name="DataZamowienia" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StatusZamowienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Klienci" Relationship="Self.FK__Zamowieni__Klien__1BFD2C07" FromRole="Zamowienia" ToRole="Klienci" />
+    <NavigationProperty Name="Pracownicy" Relationship="Self.FK__Zamowieni__Praco__1CF15040" FromRole="Zamowienia" ToRole="Pracownicy" />
+    <NavigationProperty Name="SzczegolyZamowienia" Relationship="Self.FK__Szczegoly__Zamow__2B3F6F97" FromRole="Zamowienia" ToRole="SzczegolyZamowienia" />
+  </EntityType>
+  <EntityType Name="Zdjecia">
+    <Key>
+      <PropertyRef Name="ZdjecieId" />
+    </Key>
+    <Property Name="ZdjecieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProduktId" Type="Int32" />
+    <Property Name="NazwaZdjecia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataDodania" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Produkty" Relationship="Self.FK__Zdjecia__Produkt__20C1E124" FromRole="Zdjecia" ToRole="Produkty" />
+  </EntityType>
+  <Association Name="FK__Produkty__Dostaw__15502E78">
+    <End Role="Dostawcy" Type="Self.Dostawcy" Multiplicity="1" />
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dostawcy">
+        <PropertyRef Name="DostawcaId" />
+      </Principal>
+      <Dependent Role="Produkty">
+        <PropertyRef Name="DostawcaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Egzemplar__Produ__37A5467C">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="Egzemplarz" Type="Self.Egzemplarz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="Egzemplarz">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Produkty__Katego__145C0A3F">
+    <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoria">
+        <PropertyRef Name="KategoriaId" />
+      </Principal>
+      <Dependent Role="Produkty">
+        <PropertyRef Name="KategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zamowieni__Klien__1BFD2C07">
+    <End Role="Klienci" Type="Self.Klienci" Multiplicity="0..1" />
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klienci">
+        <PropertyRef Name="KlientId" />
+      </Principal>
+      <Dependent Role="Zamowienia">
+        <PropertyRef Name="KlientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zamowieni__Praco__1CF15040">
+    <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="0..1" />
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pracownicy">
+        <PropertyRef Name="PracownikId" />
+      </Principal>
+      <Dependent Role="Zamowienia">
+        <PropertyRef Name="PracownikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Szczegoly__Produ__2C3393D0">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="SzczegolyZamowienia" Type="Self.SzczegolyZamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="SzczegolyZamowienia">
+        <PropertyRef Name="ProduktId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zdjecia__Produkt__20C1E124">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="Zdjecia" Type="Self.Zdjecia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="Zdjecia">
+        <PropertyRef Name="ProduktId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Szczegoly__Zamow__2B3F6F97">
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
+    <End Role="SzczegolyZamowienia" Type="Self.SzczegolyZamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zamowienia">
+        <PropertyRef Name="ZamowienieId" />
+      </Principal>
+      <Dependent Role="SzczegolyZamowienia">
+        <PropertyRef Name="ZamowienieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SklepEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" />
+    <EntitySet Name="Egzemplarz" EntityType="Self.Egzemplarz" />
+    <EntitySet Name="Kategoria" EntityType="Self.Kategoria" />
+    <EntitySet Name="Klienci" EntityType="Self.Klienci" />
+    <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" />
+    <EntitySet Name="Produkty" EntityType="Self.Produkty" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="SzczegolyZamowienia" EntityType="Self.SzczegolyZamowienia" />
+    <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" />
+    <EntitySet Name="Zdjecia" EntityType="Self.Zdjecia" />
+    <AssociationSet Name="FK__Produkty__Dostaw__15502E78" Association="Self.FK__Produkty__Dostaw__15502E78">
+      <End Role="Dostawcy" EntitySet="Dostawcy" />
+      <End Role="Produkty" EntitySet="Produkty" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Egzemplar__Produ__37A5467C" Association="Self.FK__Egzemplar__Produ__37A5467C">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Egzemplarz" EntitySet="Egzemplarz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Produkty__Katego__145C0A3F" Association="Self.FK__Produkty__Katego__145C0A3F">
+      <End Role="Kategoria" EntitySet="Kategoria" />
+      <End Role="Produkty" EntitySet="Produkty" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zamowieni__Klien__1BFD2C07" Association="Self.FK__Zamowieni__Klien__1BFD2C07">
+      <End Role="Klienci" EntitySet="Klienci" />
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zamowieni__Praco__1CF15040" Association="Self.FK__Zamowieni__Praco__1CF15040">
+      <End Role="Pracownicy" EntitySet="Pracownicy" />
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Szczegoly__Produ__2C3393D0" Association="Self.FK__Szczegoly__Produ__2C3393D0">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="SzczegolyZamowienia" EntitySet="SzczegolyZamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zdjecia__Produkt__20C1E124" Association="Self.FK__Zdjecia__Produkt__20C1E124">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Zdjecia" EntitySet="Zdjecia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Szczegoly__Zamow__2B3F6F97" Association="Self.FK__Szczegoly__Zamow__2B3F6F97">
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+      <End Role="SzczegolyZamowienia" EntitySet="SzczegolyZamowienia" />
+    </AssociationSet>
+    <FunctionImport Name="AddPracownik">
+      <Parameter Name="Login" Mode="In" Type="String" />
+      <Parameter Name="Haslo" Mode="In" Type="String" />
+      <Parameter Name="Imie" Mode="In" Type="String" />
+      <Parameter Name="Nazwisko" Mode="In" Type="String" />
+      <Parameter Name="Uprawnienia" Mode="In" Type="String" />
+      <Parameter Name="Tel_1" Mode="In" Type="String" />
+      <Parameter Name="Tel_2" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="WWW" Mode="In" Type="String" />
+      <Parameter Name="Kraj" Mode="In" Type="String" />
+      <Parameter Name="Region" Mode="In" Type="String" />
+      <Parameter Name="Miasto" Mode="In" Type="String" />
+      <Parameter Name="KodPocztowy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DeletePracownik">
+      <Parameter Name="Id" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="ModifyPracownik">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Login" Mode="In" Type="String" />
+      <Parameter Name="Haslo" Mode="In" Type="String" />
+      <Parameter Name="Imie" Mode="In" Type="String" />
+      <Parameter Name="Nazwisko" Mode="In" Type="String" />
+      <Parameter Name="Uprawnienia" Mode="In" Type="String" />
+      <Parameter Name="Tel_1" Mode="In" Type="String" />
+      <Parameter Name="Tel_2" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="WWW" Mode="In" Type="String" />
+      <Parameter Name="Kraj" Mode="In" Type="String" />
+      <Parameter Name="Region" Mode="In" Type="String" />
+      <Parameter Name="Miasto" Mode="In" Type="String" />
+      <Parameter Name="KodPocztowy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Pracownicy_Insert">
+      <Parameter Name="Login" Mode="In" Type="String" />
+      <Parameter Name="Haslo" Mode="In" Type="String" />
+      <Parameter Name="Imie" Mode="In" Type="String" />
+      <Parameter Name="Nazwisko" Mode="In" Type="String" />
+      <Parameter Name="Uprawnienia" Mode="In" Type="String" />
+      <Parameter Name="Tel_1" Mode="In" Type="String" />
+      <Parameter Name="Tel_2" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="WWW" Mode="In" Type="String" />
+      <Parameter Name="Kraj" Mode="In" Type="String" />
+      <Parameter Name="Region" Mode="In" Type="String" />
+      <Parameter Name="Miasto" Mode="In" Type="String" />
+      <Parameter Name="KodPocztowy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SklepModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SklepModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

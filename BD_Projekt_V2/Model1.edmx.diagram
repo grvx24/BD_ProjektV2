@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="745f259d8937439eb278723d3bd386da" Name="Diagram1">
+        <EntityTypeShape EntityType="SklepModel.Dostawcy" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Egzemplarz" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Kategoria" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Klienci" Width="1.5" PointX="3.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Pracownicy" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Produkty" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.SzczegolyZamowienia" Width="1.5" PointX="8.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Zamowienia" Width="1.5" PointX="6" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SklepModel.Zdjecia" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="SklepModel.FK__Produkty__Dostaw__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Egzemplar__Produ__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Produkty__Katego__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Zamowieni__Klien__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Zamowieni__Praco__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Szczegoly__Produ__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Zdjecia__Produkt__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="SklepModel.FK__Szczegoly__Zamow__2B3F6F97" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

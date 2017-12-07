@@ -1,0 +1,26 @@
+﻿@model IEnumerable<BD_Projekt_V2.Kategoria>
+@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>Kategorie</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaKategorii)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.NazwaKategorii, "Products", new { id = item.KategoriaId })
+            </td>
+        </tr>
+    }
+
+</table>

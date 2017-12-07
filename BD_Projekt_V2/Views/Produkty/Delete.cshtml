@@ -1,0 +1,81 @@
+﻿@model BD_Projekt_V2.Produkty
+
+@{
+    ViewBag.Title = "Usuwanie produktów";
+}
+
+<h2>Usuń</h2>
+
+<h3>Czy na pewno chcesz usunąć ten produkt?</h3>
+<div>
+    <h4>Produkty</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Dostawcy.NazwaFirmy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dostawcy.NazwaFirmy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategoria.NazwaKategorii)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategoria.NazwaKategorii)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaProduktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaProduktu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IloscNaJednostke)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IloscNaJednostke)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenaJednostkowa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CenaJednostkowa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LiczbaProduktow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LiczbaProduktow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opis)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót do listy", "Index")
+        </div>
+    }
+</div>

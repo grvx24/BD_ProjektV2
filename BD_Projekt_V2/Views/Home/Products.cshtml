@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BD_Projekt_V2.Produkty>
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>Produkty</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dostawcy.NazwaFirmy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategoria.NazwaKategorii)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaProduktu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IloscNaJednostke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CenaJednostkowa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LiczbaProduktow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dostawcy.NazwaFirmy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategoria.NazwaKategorii)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazwaProduktu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IloscNaJednostke)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenaJednostkowa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LiczbaProduktow)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+

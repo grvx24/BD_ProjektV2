@@ -1,0 +1,53 @@
+﻿@model BD_Projekt_V2.Pracownicy
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>@Html.DisplayText("Witaj ")</h2>
+<table class="table">
+    <tr>
+        <th>
+            Wybór tabeli
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Dostawcy", "Index", "Dostawcy")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Kategorie", "Index", "Kategorie")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Klienci", "Index", "Klienci")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Pracownicy", "Index", "Pracownicy")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Produkty", "Index", "Produkty")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Szczegóły zamówienia", "Index", "SzczegolyZamowienia")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Zamówienia", "Index", "Zamowienia")
+        </td>
+    </tr>
+
+
+</table>
+

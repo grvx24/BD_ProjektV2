@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SklepModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dostawcy">
+    <Key>
+      <PropertyRef Name="DostawcaId" />
+    </Key>
+    <Property Name="DostawcaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazwaFirmy" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NazwaKontaktu" Type="varchar" MaxLength="50" />
+    <Property Name="Adres" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Miasto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Region" Type="varchar" MaxLength="30" />
+    <Property Name="KodPocztowy" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Kraj" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telefon" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Fax" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Egzemplarz">
+    <Key>
+      <PropertyRef Name="KodKreskowy" />
+    </Key>
+    <Property Name="KodKreskowy" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="Kategoria">
+    <Key>
+      <PropertyRef Name="KategoriaId" />
+    </Key>
+    <Property Name="KategoriaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazwaKategorii" Type="varchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Klienci">
+    <Key>
+      <PropertyRef Name="KlientId" />
+    </Key>
+    <Property Name="KlientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Haslo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Firma" Type="varchar" MaxLength="100" />
+    <Property Name="NIP" Type="varchar" MaxLength="30" />
+    <Property Name="REGON" Type="varchar" MaxLength="30" />
+    <Property Name="Tel_1" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="Tel_2" Type="varchar" MaxLength="16" />
+    <Property Name="Fax" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="WWW" Type="varchar" MaxLength="100" />
+    <Property Name="Kraj" Type="varchar" MaxLength="50" />
+    <Property Name="Region" Type="varchar" MaxLength="50" />
+    <Property Name="Miasto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="KodPocztowy" Type="varchar" MaxLength="16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pracownicy">
+    <Key>
+      <PropertyRef Name="PracownikId" />
+    </Key>
+    <Property Name="PracownikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Haslo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Imie" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Uprawnienia" Type="varchar" MaxLength="50" />
+    <Property Name="Tel_1" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tel_2" Type="varchar" MaxLength="30" />
+    <Property Name="Fax" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="WWW" Type="varchar" MaxLength="100" />
+    <Property Name="Kraj" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Region" Type="varchar" MaxLength="50" />
+    <Property Name="Miasto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="KodPocztowy" Type="varchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="Produkty">
+    <Key>
+      <PropertyRef Name="ProduktId" />
+    </Key>
+    <Property Name="ProduktId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriaId" Type="int" Nullable="false" />
+    <Property Name="DostawcaId" Type="int" Nullable="false" />
+    <Property Name="NazwaProduktu" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IloscNaJednostke" Type="int" Nullable="false" />
+    <Property Name="CenaJednostkowa" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="LiczbaProduktow" Type="int" Nullable="false" />
+    <Property Name="Opis" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="SzczegolyZamowienia">
+    <Key>
+      <PropertyRef Name="SzczegolyZamId" />
+    </Key>
+    <Property Name="SzczegolyZamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ZamowienieId" Type="int" />
+    <Property Name="ProduktId" Type="int" />
+    <Property Name="Cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Ilosc" Type="int" Nullable="false" />
+    <Property Name="Rabat" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zamowienia">
+    <Key>
+      <PropertyRef Name="ZamowienieId" />
+    </Key>
+    <Property Name="ZamowienieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlientId" Type="int" />
+    <Property Name="PracownikId" Type="int" />
+    <Property Name="DataZamowienia" Type="datetime" Nullable="false" />
+    <Property Name="StatusZamowienia" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Zdjecia">
+    <Key>
+      <PropertyRef Name="ZdjecieId" />
+    </Key>
+    <Property Name="ZdjecieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProduktId" Type="int" />
+    <Property Name="NazwaZdjecia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DataDodania" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Egzemplar__Produ__37A5467C">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="Egzemplarz" Type="Self.Egzemplarz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="Egzemplarz">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Produkty__Dostaw__15502E78">
+    <End Role="Dostawcy" Type="Self.Dostawcy" Multiplicity="1" />
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dostawcy">
+        <PropertyRef Name="DostawcaId" />
+      </Principal>
+      <Dependent Role="Produkty">
+        <PropertyRef Name="DostawcaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Produkty__Katego__145C0A3F">
+    <End Role="Kategoria" Type="Self.Kategoria" Multiplicity="1" />
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoria">
+        <PropertyRef Name="KategoriaId" />
+      </Principal>
+      <Dependent Role="Produkty">
+        <PropertyRef Name="KategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Szczegoly__Produ__2C3393D0">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="SzczegolyZamowienia" Type="Self.SzczegolyZamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="SzczegolyZamowienia">
+        <PropertyRef Name="ProduktId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Szczegoly__Zamow__2B3F6F97">
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="0..1" />
+    <End Role="SzczegolyZamowienia" Type="Self.SzczegolyZamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zamowienia">
+        <PropertyRef Name="ZamowienieId" />
+      </Principal>
+      <Dependent Role="SzczegolyZamowienia">
+        <PropertyRef Name="ZamowienieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zamowieni__Klien__1BFD2C07">
+    <End Role="Klienci" Type="Self.Klienci" Multiplicity="0..1" />
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klienci">
+        <PropertyRef Name="KlientId" />
+      </Principal>
+      <Dependent Role="Zamowienia">
+        <PropertyRef Name="KlientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zamowieni__Praco__1CF15040">
+    <End Role="Pracownicy" Type="Self.Pracownicy" Multiplicity="0..1" />
+    <End Role="Zamowienia" Type="Self.Zamowienia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pracownicy">
+        <PropertyRef Name="PracownikId" />
+      </Principal>
+      <Dependent Role="Zamowienia">
+        <PropertyRef Name="PracownikId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Zdjecia__Produkt__20C1E124">
+    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
+    <End Role="Zdjecia" Type="Self.Zdjecia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="Zdjecia">
+        <PropertyRef Name="ProduktId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddPracownik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Login" Type="varchar" Mode="In" />
+    <Parameter Name="Haslo" Type="varchar" Mode="In" />
+    <Parameter Name="Imie" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
+    <Parameter Name="Uprawnienia" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_1" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_2" Type="varchar" Mode="In" />
+    <Parameter Name="Fax" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="WWW" Type="varchar" Mode="In" />
+    <Parameter Name="Kraj" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="varchar" Mode="In" />
+    <Parameter Name="Miasto" Type="varchar" Mode="In" />
+    <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="DeletePracownik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="ModifyPracownik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Login" Type="varchar" Mode="In" />
+    <Parameter Name="Haslo" Type="varchar" Mode="In" />
+    <Parameter Name="Imie" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
+    <Parameter Name="Uprawnienia" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_1" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_2" Type="varchar" Mode="In" />
+    <Parameter Name="Fax" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="WWW" Type="varchar" Mode="In" />
+    <Parameter Name="Kraj" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="varchar" Mode="In" />
+    <Parameter Name="Miasto" Type="varchar" Mode="In" />
+    <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Pracownicy_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Login" Type="varchar" Mode="In" />
+    <Parameter Name="Haslo" Type="varchar" Mode="In" />
+    <Parameter Name="Imie" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
+    <Parameter Name="Uprawnienia" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_1" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_2" Type="varchar" Mode="In" />
+    <Parameter Name="Fax" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="WWW" Type="varchar" Mode="In" />
+    <Parameter Name="Kraj" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="varchar" Mode="In" />
+    <Parameter Name="Miasto" Type="varchar" Mode="In" />
+    <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="SklepModelStoreContainer">
+    <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Egzemplarz" EntityType="Self.Egzemplarz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kategoria" EntityType="Self.Kategoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Klienci" EntityType="Self.Klienci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Produkty" EntityType="Self.Produkty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SzczegolyZamowienia" EntityType="Self.SzczegolyZamowienia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zamowienia" EntityType="Self.Zamowienia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Zdjecia" EntityType="Self.Zdjecia" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Egzemplar__Produ__37A5467C" Association="Self.FK__Egzemplar__Produ__37A5467C">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Egzemplarz" EntitySet="Egzemplarz" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Produkty__Dostaw__15502E78" Association="Self.FK__Produkty__Dostaw__15502E78">
+      <End Role="Dostawcy" EntitySet="Dostawcy" />
+      <End Role="Produkty" EntitySet="Produkty" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Produkty__Katego__145C0A3F" Association="Self.FK__Produkty__Katego__145C0A3F">
+      <End Role="Kategoria" EntitySet="Kategoria" />
+      <End Role="Produkty" EntitySet="Produkty" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Szczegoly__Produ__2C3393D0" Association="Self.FK__Szczegoly__Produ__2C3393D0">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="SzczegolyZamowienia" EntitySet="SzczegolyZamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Szczegoly__Zamow__2B3F6F97" Association="Self.FK__Szczegoly__Zamow__2B3F6F97">
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+      <End Role="SzczegolyZamowienia" EntitySet="SzczegolyZamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zamowieni__Klien__1BFD2C07" Association="Self.FK__Zamowieni__Klien__1BFD2C07">
+      <End Role="Klienci" EntitySet="Klienci" />
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zamowieni__Praco__1CF15040" Association="Self.FK__Zamowieni__Praco__1CF15040">
+      <End Role="Pracownicy" EntitySet="Pracownicy" />
+      <End Role="Zamowienia" EntitySet="Zamowienia" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Zdjecia__Produkt__20C1E124" Association="Self.FK__Zdjecia__Produkt__20C1E124">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Zdjecia" EntitySet="Zdjecia" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

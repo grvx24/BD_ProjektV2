@@ -1,0 +1,29 @@
+﻿@model BD_Projekt_V2.Klienci
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Login", "User"))
+{
+    @Html.ValidationSummary(true, "Logowanie nie powiodło się:");
+    <div>
+        <fieldset>
+            <legend>Logowanie</legend>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Login)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(u => u.Login)
+                @Html.ValidationMessageFor(u => u.Login)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(u => u.Haslo)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(u => u.Haslo)
+                @Html.ValidationMessageFor(u => u.Haslo)
+            </div>
+            <input type="submit" value="Zaloguj się" />
+        </fieldset>
+    </div>
+}
