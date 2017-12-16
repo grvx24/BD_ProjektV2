@@ -11,6 +11,7 @@ using System.Data.Entity.Validation;
 
 namespace BD_Projekt_V2.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class PracownicyController : Controller
     {
         private SklepEntities db = new SklepEntities();
@@ -20,8 +21,7 @@ namespace BD_Projekt_V2.Controllers
         {
             return View(db.Pracownicy.ToList());
         }
-
-        // GET: Pracownicy/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -68,12 +68,13 @@ namespace BD_Projekt_V2.Controllers
                 }
                 catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
                 {
-                    TempData["dbAlert"] = ex.InnerException.Message;
+                    TempData["dbAlert"] = ex.InnerException.Message + Environment.NewLine
+                        + "Kod błędu: " + ex.HResult;
                     return View(pracownicy);
                 }
                 catch (Exception e)
                 {
-                    TempData["dbAlert"] = e.GetBaseException().Message;
+                    TempData["dbAlert"] = e.GetBaseException();
                     return View(pracownicy);
                 }
 
@@ -108,7 +109,8 @@ namespace BD_Projekt_V2.Controllers
             {
                 try
                 {
-                    db.ModifyPracownik(pracownicy.PracownikId,pracownicy.Login, pracownicy.Haslo, pracownicy.Imie, pracownicy.Nazwisko, pracownicy.Uprawnienia, pracownicy.Tel_1,
+                    db.ModifyPracownik(pracownicy.PracownikId,pracownicy.Login, pracownicy.Haslo, pracownicy.Imie, pracownicy.Nazwisko, 
+                        pracownicy.Uprawnienia, pracownicy.Tel_1,
                         pracownicy.Tel_2, pracownicy.Fax, pracownicy.Email, pracownicy.WWW, pracownicy.Kraj, pracownicy.Region, pracownicy.Miasto,
                         pracownicy.KodPocztowy);
                     db.SaveChanges();
@@ -123,12 +125,13 @@ namespace BD_Projekt_V2.Controllers
                 }
                 catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
                 {
-                    TempData["dbAlert"] = ex.InnerException.Message;
+                    TempData["dbAlert"] = ex.InnerException.Message + "\nKod błędu: " + Environment.NewLine
+                        + "Kod błędu: " + ex.HResult;
                     return View(pracownicy);
                 }
                 catch (Exception e)
                 {
-                    TempData["dbAlert"] = e.GetBaseException().Message;
+                    TempData["dbAlert"] = e.GetBaseException();
                     return View(pracownicy);
                 }
 
@@ -175,7 +178,8 @@ namespace BD_Projekt_V2.Controllers
             }
             catch(System.Data.Entity.Core.EntityCommandExecutionException ex)
             {
-                TempData["dbAlert"] = ex.InnerException.Message;
+                TempData["dbAlert"] = ex.InnerException.Message + "\nKod błędu: " + Environment.NewLine
+                        + "Kod błędu: " + ex.HResult;
                 return View(pracownicy);
             }
             catch(Exception e)

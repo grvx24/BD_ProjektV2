@@ -26,7 +26,15 @@
                     {
                         <li>@Html.ActionLink("Wyloguj się", "Logout", "User")</li>
                         string s = Html.Encode(User.Identity.Name);
-                        <li>@Html.ActionLink(s, "Index", "Home")</li>
+                        if (this.User.IsInRole("Administrator"))
+                        {
+                            <li>@Html.ActionLink(s, "Index", "Admin")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink(s, "UserInfo", "User")</li>
+                        }
+
                     }
                     else
                     {
@@ -42,11 +50,13 @@
                     </li>
                     <li>@Html.ActionLink("Autorzy", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
-
+                    @if (Request.IsAuthenticated && User.IsInRole("Klient"))
+                    {
+                        <li>@Html.ActionLink("Koszyk", "Index", "Cart")</li>
+                    }
+                    
             </div>
-            </ul>
         </div>
-    </div>
     </div>
     <div class="container body-content">
         @RenderBody()

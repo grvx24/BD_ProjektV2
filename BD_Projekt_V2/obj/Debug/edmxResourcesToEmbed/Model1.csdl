@@ -16,14 +16,6 @@
     <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Produkty" Relationship="Self.FK__Produkty__Dostaw__15502E78" FromRole="Dostawcy" ToRole="Produkty" />
   </EntityType>
-  <EntityType Name="Egzemplarz">
-    <Key>
-      <PropertyRef Name="KodKreskowy" />
-    </Key>
-    <Property Name="KodKreskowy" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="ProductId" Type="Int32" />
-    <NavigationProperty Name="Produkty" Relationship="Self.FK__Egzemplar__Produ__37A5467C" FromRole="Egzemplarz" ToRole="Produkty" />
-  </EntityType>
   <EntityType Name="Kategoria">
     <Key>
       <PropertyRef Name="KategoriaId" />
@@ -54,6 +46,7 @@
     <Property Name="Miasto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Zamowienia" Relationship="Self.FK__Zamowieni__Klien__1BFD2C07" FromRole="Klienci" ToRole="Zamowienia" />
+    <NavigationProperty Name="Koszyk_Przedmiot" Relationship="SklepModel.FK__Koszyk_Pr__Klien__02FC7413" FromRole="Klienci" ToRole="Koszyk_Przedmiot" />
   </EntityType>
   <EntityType Name="Pracownicy">
     <Key>
@@ -89,10 +82,11 @@
     <Property Name="LiczbaProduktow" Type="Int32" Nullable="false" />
     <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Dostawcy" Relationship="Self.FK__Produkty__Dostaw__15502E78" FromRole="Produkty" ToRole="Dostawcy" />
-    <NavigationProperty Name="Egzemplarz" Relationship="Self.FK__Egzemplar__Produ__37A5467C" FromRole="Produkty" ToRole="Egzemplarz" />
     <NavigationProperty Name="Kategoria" Relationship="Self.FK__Produkty__Katego__145C0A3F" FromRole="Produkty" ToRole="Kategoria" />
     <NavigationProperty Name="SzczegolyZamowienia" Relationship="Self.FK__Szczegoly__Produ__2C3393D0" FromRole="Produkty" ToRole="SzczegolyZamowienia" />
     <NavigationProperty Name="Zdjecia" Relationship="Self.FK__Zdjecia__Produkt__20C1E124" FromRole="Produkty" ToRole="Zdjecia" />
+    <NavigationProperty Name="Koszyk_Przedmiot" Relationship="SklepModel.FK__Koszyk_Pr__Produ__03F0984C" FromRole="Produkty" ToRole="Koszyk_Przedmiot" />
+    <NavigationProperty Name="Egzemplarz" Relationship="SklepModel.FK__Egzemplar__Produ__37A5467C" FromRole="Produkty" ToRole="Egzemplarz" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -149,18 +143,6 @@
       </Principal>
       <Dependent Role="Produkty">
         <PropertyRef Name="DostawcaId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Egzemplar__Produ__37A5467C">
-    <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
-    <End Role="Egzemplarz" Type="Self.Egzemplarz" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Produkty">
-        <PropertyRef Name="ProduktId" />
-      </Principal>
-      <Dependent Role="Egzemplarz">
-        <PropertyRef Name="ProductId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -238,7 +220,6 @@
   </Association>
   <EntityContainer Name="SklepEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" />
-    <EntitySet Name="Egzemplarz" EntityType="Self.Egzemplarz" />
     <EntitySet Name="Kategoria" EntityType="Self.Kategoria" />
     <EntitySet Name="Klienci" EntityType="Self.Klienci" />
     <EntitySet Name="Pracownicy" EntityType="Self.Pracownicy" />
@@ -250,10 +231,6 @@
     <AssociationSet Name="FK__Produkty__Dostaw__15502E78" Association="Self.FK__Produkty__Dostaw__15502E78">
       <End Role="Dostawcy" EntitySet="Dostawcy" />
       <End Role="Produkty" EntitySet="Produkty" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Egzemplar__Produ__37A5467C" Association="Self.FK__Egzemplar__Produ__37A5467C">
-      <End Role="Produkty" EntitySet="Produkty" />
-      <End Role="Egzemplarz" EntitySet="Egzemplarz" />
     </AssociationSet>
     <AssociationSet Name="FK__Produkty__Katego__145C0A3F" Association="Self.FK__Produkty__Katego__145C0A3F">
       <End Role="Kategoria" EntitySet="Kategoria" />
@@ -361,6 +338,25 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Administratorzy" EntityType="SklepModel.Administratorzy" />
+    <EntitySet Name="Pracownicy_z_Polski" EntityType="SklepModel.Pracownicy_z_Polski" />
+    <EntitySet Name="Serwisanci" EntityType="SklepModel.Serwisanci" />
+    <EntitySet Name="Wszyscy_pracownicy" EntityType="SklepModel.Wszyscy_pracownicy" />
+    <EntitySet Name="Koszyk_Przedmiot" EntityType="SklepModel.Koszyk_Przedmiot" />
+    <AssociationSet Name="FK__Koszyk_Pr__Klien__02FC7413" Association="SklepModel.FK__Koszyk_Pr__Klien__02FC7413">
+      <End Role="Klienci" EntitySet="Klienci" />
+      <End Role="Koszyk_Przedmiot" EntitySet="Koszyk_Przedmiot" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Koszyk_Pr__Produ__03F0984C" Association="SklepModel.FK__Koszyk_Pr__Produ__03F0984C">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Koszyk_Przedmiot" EntitySet="Koszyk_Przedmiot" />
+    </AssociationSet>
+    <EntitySet Name="Egzemplarz" EntityType="SklepModel.Egzemplarz" />
+    <AssociationSet Name="FK__Egzemplar__Produ__37A5467C" Association="SklepModel.FK__Egzemplar__Produ__37A5467C">
+      <End Role="Produkty" EntitySet="Produkty" />
+      <End Role="Egzemplarz" EntitySet="Egzemplarz" />
+    </AssociationSet>
+    <EntitySet Name="KoszykView" EntityType="SklepModel.KoszykView" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -373,4 +369,187 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Administratorzy">
+    <Key>
+      <PropertyRef Name="PracownikId" />
+      <PropertyRef Name="Login" />
+      <PropertyRef Name="Haslo" />
+      <PropertyRef Name="Imie" />
+      <PropertyRef Name="Nazwisko" />
+      <PropertyRef Name="Tel_1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Kraj" />
+      <PropertyRef Name="Miasto" />
+    </Key>
+    <Property Name="PracownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Haslo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Uprawnienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Kraj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Miasto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Pracownicy_z_Polski">
+    <Key>
+      <PropertyRef Name="PracownikId" />
+      <PropertyRef Name="Login" />
+      <PropertyRef Name="Haslo" />
+      <PropertyRef Name="Imie" />
+      <PropertyRef Name="Nazwisko" />
+      <PropertyRef Name="Tel_1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Kraj" />
+      <PropertyRef Name="Miasto" />
+    </Key>
+    <Property Name="PracownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Haslo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Uprawnienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Kraj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Miasto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Serwisanci">
+    <Key>
+      <PropertyRef Name="PracownikId" />
+      <PropertyRef Name="Login" />
+      <PropertyRef Name="Haslo" />
+      <PropertyRef Name="Imie" />
+      <PropertyRef Name="Nazwisko" />
+      <PropertyRef Name="Tel_1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Kraj" />
+      <PropertyRef Name="Miasto" />
+    </Key>
+    <Property Name="PracownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Haslo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Uprawnienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Kraj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Miasto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Wszyscy_pracownicy">
+    <Key>
+      <PropertyRef Name="PracownikId" />
+      <PropertyRef Name="Login" />
+      <PropertyRef Name="Haslo" />
+      <PropertyRef Name="Imie" />
+      <PropertyRef Name="Nazwisko" />
+      <PropertyRef Name="Tel_1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Kraj" />
+      <PropertyRef Name="Miasto" />
+    </Key>
+    <Property Name="PracownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Haslo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Uprawnienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Tel_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Kraj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Miasto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Koszyk_Przedmiot">
+    <Key>
+      <PropertyRef Name="KlientId" />
+      <PropertyRef Name="ProduktId" />
+    </Key>
+    <Property Name="KlientId" Type="Int32" Nullable="false" />
+    <Property Name="ProduktId" Type="Int32" Nullable="false" />
+    <Property Name="LiczbaSztuk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Klienci" Relationship="SklepModel.FK__Koszyk_Pr__Klien__02FC7413" FromRole="Koszyk_Przedmiot" ToRole="Klienci" />
+    <NavigationProperty Name="Produkty" Relationship="SklepModel.FK__Koszyk_Pr__Produ__03F0984C" FromRole="Koszyk_Przedmiot" ToRole="Produkty" />
+  </EntityType>
+  <Association Name="FK__Koszyk_Pr__Klien__02FC7413">
+    <End Type="SklepModel.Klienci" Role="Klienci" Multiplicity="1" />
+    <End Type="SklepModel.Koszyk_Przedmiot" Role="Koszyk_Przedmiot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Klienci">
+        <PropertyRef Name="KlientId" />
+      </Principal>
+      <Dependent Role="Koszyk_Przedmiot">
+        <PropertyRef Name="KlientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Koszyk_Pr__Produ__03F0984C">
+    <End Type="SklepModel.Produkty" Role="Produkty" Multiplicity="1" />
+    <End Type="SklepModel.Koszyk_Przedmiot" Role="Koszyk_Przedmiot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="Koszyk_Przedmiot">
+        <PropertyRef Name="ProduktId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Egzemplarz">
+    <Key>
+      <PropertyRef Name="KodKreskowy" />
+    </Key>
+    <Property Name="KodKreskowy" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="Produkty" Relationship="SklepModel.FK__Egzemplar__Produ__37A5467C" FromRole="Egzemplarz" ToRole="Produkty" />
+  </EntityType>
+  <Association Name="FK__Egzemplar__Produ__37A5467C">
+    <End Type="SklepModel.Produkty" Role="Produkty" Multiplicity="0..1" />
+    <End Type="SklepModel.Egzemplarz" Role="Egzemplarz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Produkty">
+        <PropertyRef Name="ProduktId" />
+      </Principal>
+      <Dependent Role="Egzemplarz">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KoszykView">
+    <Key>
+      <PropertyRef Name="KlientId" />
+      <PropertyRef Name="ProduktId" />
+      <PropertyRef Name="NazwaProduktu" />
+      <PropertyRef Name="NazwaKategorii" />
+      <PropertyRef Name="LiczbaSztuk" />
+      <PropertyRef Name="CenaJednostkowa" />
+    </Key>
+    <Property Name="KlientId" Type="Int32" Nullable="false" />
+    <Property Name="ProduktId" Type="Int32" Nullable="false" />
+    <Property Name="NazwaProduktu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NazwaKategorii" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="LiczbaSztuk" Type="Int32" Nullable="false" />
+    <Property Name="CenaJednostkowa" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
 </Schema>

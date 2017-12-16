@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,7 +40,7 @@ namespace BD_Projekt_V2.Controllers
                 var admin = db.Pracownicy.Where(a => a.Login.Equals(user.Login) && a.Haslo.Equals(user.Haslo)).FirstOrDefault();
                 if (admin != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.Login, false);
+                    FormsAuthentication.SetAuthCookie(admin.Login, false);
 
                     var authTicket = new FormsAuthenticationTicket(1, admin.Login, DateTime.Now, DateTime.Now.AddMinutes(20),
                         false, admin.Uprawnienia);
@@ -80,14 +81,29 @@ namespace BD_Projekt_V2.Controllers
             {
                 using (SklepEntities db = new SklepEntities())
                 {
-                    db.Klienci.Add(klienci);
-                    db.SaveChanges();
-                    return RedirectToAction("Login");
+                    try
+                    {
+                        db.Klienci.Add(klienci);
+                        db.SaveChanges();
+                        return RedirectToAction("Login");
+                    }catch (SqlException ex)
+                    {
+                        TempData["dbAlert"] = ex.GetBaseException().Message;
+                        return View(klienci);
+                    }
+
                 }
             }
 
             return View(klienci);
         }
+
+        [Authorize(Roles="Klient")]
+        public ActionResult UserInfo()
+        {
+            return View();
+        }
+
 
     }
 }

@@ -17,9 +17,10 @@ namespace BD_Projekt_V2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produkty()
         {
-            this.Egzemplarz = new HashSet<Egzemplarz>();
             this.SzczegolyZamowienia = new HashSet<SzczegolyZamowienia>();
             this.Zdjecia = new HashSet<Zdjecia>();
+            this.Koszyk_Przedmiot = new HashSet<Koszyk_Przedmiot>();
+            this.Egzemplarz = new HashSet<Egzemplarz>();
         }
     
         public int ProduktId { get; set; }
@@ -32,12 +33,14 @@ namespace BD_Projekt_V2
         public string Opis { get; set; }
     
         public virtual Dostawcy Dostawcy { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Egzemplarz> Egzemplarz { get; set; }
         public virtual Kategoria Kategoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SzczegolyZamowienia> SzczegolyZamowienia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zdjecia> Zdjecia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Koszyk_Przedmiot> Koszyk_Przedmiot { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Egzemplarz> Egzemplarz { get; set; }
     }
 }

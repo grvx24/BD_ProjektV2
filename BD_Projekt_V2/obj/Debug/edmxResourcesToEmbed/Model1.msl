@@ -17,14 +17,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Egzemplarz">
-      <EntityTypeMapping TypeName="SklepModel.Egzemplarz">
-        <MappingFragment StoreEntitySet="Egzemplarz">
-          <ScalarProperty Name="KodKreskowy" ColumnName="KodKreskowy" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Kategoria">
       <EntityTypeMapping TypeName="SklepModel.Kategoria">
         <MappingFragment StoreEntitySet="Kategoria">
@@ -163,5 +155,118 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="SklepModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="SklepModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Administratorzy">
+      <EntityTypeMapping TypeName="SklepModel.Administratorzy">
+        <MappingFragment StoreEntitySet="Administratorzy">
+          <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+          <ScalarProperty Name="WWW" ColumnName="WWW" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
+          <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+          <ScalarProperty Name="Uprawnienia" ColumnName="Uprawnienia" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pracownicy_z_Polski">
+      <EntityTypeMapping TypeName="SklepModel.Pracownicy_z_Polski">
+        <MappingFragment StoreEntitySet="Pracownicy_z_Polski">
+          <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+          <ScalarProperty Name="WWW" ColumnName="WWW" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
+          <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+          <ScalarProperty Name="Uprawnienia" ColumnName="Uprawnienia" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Serwisanci">
+      <EntityTypeMapping TypeName="SklepModel.Serwisanci">
+        <MappingFragment StoreEntitySet="Serwisanci">
+          <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+          <ScalarProperty Name="WWW" ColumnName="WWW" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
+          <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+          <ScalarProperty Name="Uprawnienia" ColumnName="Uprawnienia" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wszyscy_pracownicy">
+      <EntityTypeMapping TypeName="SklepModel.Wszyscy_pracownicy">
+        <MappingFragment StoreEntitySet="Wszyscy_pracownicy">
+          <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
+          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Kraj" ColumnName="Kraj" />
+          <ScalarProperty Name="WWW" ColumnName="WWW" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
+          <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
+          <ScalarProperty Name="Uprawnienia" ColumnName="Uprawnienia" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Koszyk_Przedmiot">
+      <EntityTypeMapping TypeName="SklepModel.Koszyk_Przedmiot">
+        <MappingFragment StoreEntitySet="Koszyk_Przedmiot">
+          <ScalarProperty Name="LiczbaSztuk" ColumnName="LiczbaSztuk" />
+          <ScalarProperty Name="ProduktId" ColumnName="ProduktId" />
+          <ScalarProperty Name="KlientId" ColumnName="KlientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Egzemplarz">
+      <EntityTypeMapping TypeName="SklepModel.Egzemplarz">
+        <MappingFragment StoreEntitySet="Egzemplarz">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="KodKreskowy" ColumnName="KodKreskowy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KoszykView">
+      <EntityTypeMapping TypeName="SklepModel.KoszykView">
+        <MappingFragment StoreEntitySet="KoszykView">
+          <ScalarProperty Name="CenaJednostkowa" ColumnName="CenaJednostkowa" />
+          <ScalarProperty Name="LiczbaSztuk" ColumnName="LiczbaSztuk" />
+          <ScalarProperty Name="NazwaKategorii" ColumnName="NazwaKategorii" />
+          <ScalarProperty Name="NazwaProduktu" ColumnName="NazwaProduktu" />
+          <ScalarProperty Name="ProduktId" ColumnName="ProduktId" />
+          <ScalarProperty Name="KlientId" ColumnName="KlientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

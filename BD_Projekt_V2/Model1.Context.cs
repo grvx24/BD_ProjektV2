@@ -28,7 +28,6 @@ namespace BD_Projekt_V2
         }
     
         public virtual DbSet<Dostawcy> Dostawcy { get; set; }
-        public virtual DbSet<Egzemplarz> Egzemplarz { get; set; }
         public virtual DbSet<Kategoria> Kategoria { get; set; }
         public virtual DbSet<Klienci> Klienci { get; set; }
         public virtual DbSet<Pracownicy> Pracownicy { get; set; }
@@ -37,6 +36,13 @@ namespace BD_Projekt_V2
         public virtual DbSet<SzczegolyZamowienia> SzczegolyZamowienia { get; set; }
         public virtual DbSet<Zamowienia> Zamowienia { get; set; }
         public virtual DbSet<Zdjecia> Zdjecia { get; set; }
+        public virtual DbSet<Administratorzy> Administratorzy { get; set; }
+        public virtual DbSet<Pracownicy_z_Polski> Pracownicy_z_Polski { get; set; }
+        public virtual DbSet<Serwisanci> Serwisanci { get; set; }
+        public virtual DbSet<Wszyscy_pracownicy> Wszyscy_pracownicy { get; set; }
+        public virtual DbSet<Koszyk_Przedmiot> Koszyk_Przedmiot { get; set; }
+        public virtual DbSet<Egzemplarz> Egzemplarz { get; set; }
+        public virtual DbSet<KoszykView> KoszykView { get; set; }
     
         public virtual int AddPracownik(string login, string haslo, string imie, string nazwisko, string uprawnienia, string tel_1, string tel_2, string fax, string email, string wWW, string kraj, string region, string miasto, string kodPocztowy)
         {

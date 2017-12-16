@@ -59,6 +59,20 @@ namespace BD_Projekt_V2.Controllers
             return View(products.ToList());
         }
 
+        public ActionResult AddToCart(int Id)
+        {
+            var user = db.Klienci.FirstOrDefault(l => l.Login == User.Identity.Name);
+            if (user != null)
+            {
+                Koszyk_Przedmiot cartItem = new Koszyk_Przedmiot { KlientId = user.KlientId, ProduktId = Id, LiczbaSztuk = 1 };
+
+                db.Koszyk_Przedmiot.Add(cartItem);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

@@ -56,6 +56,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Opis)
             </td>
+            <td>
+                @if (User.IsInRole("Klient"))
+                {
+                    @Html.ActionLink("Dodaj do koszyka", "AddToCart", "Home", new { Id = item.ProduktId, Login = User.Identity.Name, Count=1 },null);
+                }           
+            </td>
         </tr>
     }
 

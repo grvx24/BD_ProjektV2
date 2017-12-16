@@ -4,7 +4,10 @@
 }
 
 
-<h2>@Html.DisplayText("Witaj ")</h2>
+<h2>@Html.DisplayText("Witaj w panelu administratora.")</h2>
+<div>
+    @Html.ActionLink("Lista administratorów","AdminsList")
+</div>
 <table class="table">
     <tr>
         <th>

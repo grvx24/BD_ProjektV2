@@ -18,6 +18,7 @@ namespace BD_Projekt_V2
         public Klienci()
         {
             this.Zamowienia = new HashSet<Zamowienia>();
+            this.Koszyk_Przedmiot = new HashSet<Koszyk_Przedmiot>();
         }
     
         public int KlientId { get; set; }
@@ -40,5 +41,7 @@ namespace BD_Projekt_V2
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Zamowienia> Zamowienia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Koszyk_Przedmiot> Koszyk_Przedmiot { get; set; }
     }
 }

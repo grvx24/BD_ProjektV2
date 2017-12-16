@@ -146,14 +146,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administratorzy.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DostawcyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KategorieController.cs" />
+    <Compile Include="Controllers\KlienciController.cs" />
     <Compile Include="Controllers\PracownicyController.cs" />
     <Compile Include="Controllers\ProduktyController.cs" />
+    <Compile Include="Controllers\SzczegolyZamowieniaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\ZamowieniaController.cs" />
     <Compile Include="Dostawcy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -167,6 +176,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Klienci.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KoszykView.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Koszyk_Przedmiot.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
@@ -187,10 +202,16 @@
     <Compile Include="Pracownicy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pracownicy_z_Polski.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Produkty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serwisanci.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -201,6 +222,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="SzczegolyZamowienia.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Wszyscy_pracownicy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Zamowienia.cs">
@@ -279,6 +303,35 @@
     <Content Include="Views\Produkty\Details.cshtml" />
     <Content Include="Views\Produkty\Edit.cshtml" />
     <Content Include="Views\Produkty\Index.cshtml" />
+    <Content Include="Views\Klienci\Create.cshtml" />
+    <Content Include="Views\Klienci\Delete.cshtml" />
+    <Content Include="Views\Klienci\Details.cshtml" />
+    <Content Include="Views\Klienci\Edit.cshtml" />
+    <Content Include="Views\Klienci\Index.cshtml" />
+    <Content Include="Views\Admin\AdminsList.cshtml" />
+    <Content Include="Views\Dostawcy\Create.cshtml" />
+    <Content Include="Views\Dostawcy\Delete.cshtml" />
+    <Content Include="Views\Dostawcy\Details.cshtml" />
+    <Content Include="Views\Dostawcy\Edit.cshtml" />
+    <Content Include="Views\Dostawcy\Index.cshtml" />
+    <Content Include="Views\Kategorie\Create.cshtml" />
+    <Content Include="Views\Kategorie\Delete.cshtml" />
+    <Content Include="Views\Kategorie\Details.cshtml" />
+    <Content Include="Views\Kategorie\Edit.cshtml" />
+    <Content Include="Views\Kategorie\Index.cshtml" />
+    <Content Include="Views\SzczegolyZamowienia\Create.cshtml" />
+    <Content Include="Views\SzczegolyZamowienia\Delete.cshtml" />
+    <Content Include="Views\SzczegolyZamowienia\Details.cshtml" />
+    <Content Include="Views\SzczegolyZamowienia\Edit.cshtml" />
+    <Content Include="Views\SzczegolyZamowienia\Index.cshtml" />
+    <Content Include="Views\Zamowienia\Create.cshtml" />
+    <Content Include="Views\Zamowienia\Delete.cshtml" />
+    <Content Include="Views\Zamowienia\Details.cshtml" />
+    <Content Include="Views\Zamowienia\Edit.cshtml" />
+    <Content Include="Views\Zamowienia\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Home\AddToCart.cshtml" />
+    <Content Include="Views\Cart\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
