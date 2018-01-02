@@ -30,6 +30,10 @@
                         {
                             <li>@Html.ActionLink(s, "Index", "Admin")</li>
                         }
+                        else if (this.User.IsInRole("Sprzedawca"))
+                        {
+                            <li>@Html.ActionLink(s, "Index", "Vendor")</li>
+                        }
                         else
                         {
                             <li>@Html.ActionLink(s, "UserInfo", "User")</li>

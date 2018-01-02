@@ -66,6 +66,7 @@ C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_P
 C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\bin\Microsoft.AI.Web.xml
-C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\obj\Debug\BD_Projekt_V2.csprojResolveAssemblyReference.cache
 C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\obj\Debug\BD_Projekt_V2.dll
 C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\obj\Debug\BD_Projekt_V2.pdb
+C:\Users\Kamil Sagalara\Documents\Visual Studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\obj\Debug\BD_Projekt_V2.csproj.CoreCompileInputs.cache
+C:\Users\Kamil Sagalara\documents\visual studio 2017\Projects\BD_Projekt_V2\BD_Projekt_V2\obj\Debug\BD_Projekt_V2.csprojResolveAssemblyReference.cache

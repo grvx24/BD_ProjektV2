@@ -212,6 +212,15 @@ warning 6002: The table/view 'Sklep.dbo.Pracownicy_z_Polski' does not have a pri
     <Property Name="KodPocztowy" Type="varchar" MaxLength="16" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6013: The table/view 'Sklep.dbo.PracownicyLiczbaZamowienView' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="PracownicyLiczbaZamowienView">
+          <Property Name="PracownikId" Type="int" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+          <Property Name="Imie" Type="varchar" MaxLength="50" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="ObslugiwaneZamowienia" Type="int" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'Sklep.dbo.Serwisanci' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Serwisanci">
     <Key>
@@ -242,34 +251,25 @@ warning 6002: The table/view 'Sklep.dbo.Serwisanci' does not have a primary key 
     <Property Name="KodPocztowy" Type="varchar" MaxLength="16" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'Sklep.dbo.Wszyscy_pracownicy' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="Wszyscy_pracownicy">
+warning 6002: The table/view 'Sklep.dbo.SzczegolyZamowieniaView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SzczegolyZamowieniaView">
     <Key>
-      <PropertyRef Name="PracownikId" />
-      <PropertyRef Name="Login" />
-      <PropertyRef Name="Haslo" />
-      <PropertyRef Name="Imie" />
-      <PropertyRef Name="Nazwisko" />
-      <PropertyRef Name="Tel_1" />
-      <PropertyRef Name="Email" />
-      <PropertyRef Name="Kraj" />
-      <PropertyRef Name="Miasto" />
+      <PropertyRef Name="NazwaProduktu" />
+      <PropertyRef Name="CenaJednostkowa" />
+      <PropertyRef Name="Cena" />
+      <PropertyRef Name="Ilosc" />
+      <PropertyRef Name="Rabat" />
+      <PropertyRef Name="IloscNaJednostke" />
+      <PropertyRef Name="Opis" />
     </Key>
-    <Property Name="PracownikId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Haslo" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Imie" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Uprawnienia" Type="varchar" MaxLength="50" />
-    <Property Name="Tel_1" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="Tel_2" Type="varchar" MaxLength="30" />
-    <Property Name="Fax" Type="varchar" MaxLength="30" />
-    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="WWW" Type="varchar" MaxLength="100" />
-    <Property Name="Kraj" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Region" Type="varchar" MaxLength="50" />
-    <Property Name="Miasto" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="KodPocztowy" Type="varchar" MaxLength="16" />
+    <Property Name="ZamowienieId" Type="int" />
+    <Property Name="NazwaProduktu" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CenaJednostkowa" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Ilosc" Type="int" Nullable="false" />
+    <Property Name="Rabat" Type="real" Nullable="false" />
+    <Property Name="IloscNaJednostke" Type="int" Nullable="false" />
+    <Property Name="Opis" Type="text" Nullable="false" />
   </EntityType>
   <Association Name="FK__Egzemplar__Produ__37A5467C">
     <End Role="Produkty" Type="Self.Produkty" Multiplicity="0..1" />
@@ -391,6 +391,28 @@ warning 6002: The table/view 'Sklep.dbo.Wszyscy_pracownicy' does not have a prim
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="Add_Szczegoly_Zam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ZamId" Type="int" Mode="In" />
+    <Parameter Name="ProduktId" Type="int" Mode="In" />
+    <Parameter Name="LiczbaProduktow" Type="int" Mode="In" />
+    <Parameter Name="Rabat" Type="real" Mode="In" />
+  </Function>
+  <Function Name="AddKlient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Login" Type="varchar" Mode="In" />
+    <Parameter Name="Haslo" Type="varchar" Mode="In" />
+    <Parameter Name="Imie" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
+    <Parameter Name="Firma" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_1" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_2" Type="varchar" Mode="In" />
+    <Parameter Name="Fax" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="WWW" Type="varchar" Mode="In" />
+    <Parameter Name="Kraj" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="varchar" Mode="In" />
+    <Parameter Name="Miasto" Type="varchar" Mode="In" />
+    <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="AddPracownik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Login" Type="varchar" Mode="In" />
     <Parameter Name="Haslo" Type="varchar" Mode="In" />
@@ -407,10 +429,38 @@ warning 6002: The table/view 'Sklep.dbo.Wszyscy_pracownicy' does not have a prim
     <Parameter Name="Miasto" Type="varchar" Mode="In" />
     <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="AddZamowienie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="KlientId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="BindPracownikToZamowienie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ZamowienieId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CheckLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="Login" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="DeletePracownik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="varchar" Mode="In" />
   </Function>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="ModifyKlient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+    <Parameter Name="Login" Type="varchar" Mode="In" />
+    <Parameter Name="Haslo" Type="varchar" Mode="In" />
+    <Parameter Name="Imie" Type="varchar" Mode="In" />
+    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
+    <Parameter Name="Firma" Type="varchar" Mode="In" />
+    <Parameter Name="NIP" Type="varchar" Mode="In" />
+    <Parameter Name="REGON" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_1" Type="varchar" Mode="In" />
+    <Parameter Name="Tel_2" Type="varchar" Mode="In" />
+    <Parameter Name="Fax" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="WWW" Type="varchar" Mode="In" />
+    <Parameter Name="Kraj" Type="varchar" Mode="In" />
+    <Parameter Name="Region" Type="varchar" Mode="In" />
+    <Parameter Name="Miasto" Type="varchar" Mode="In" />
+    <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
+  </Function>
   <Function Name="ModifyPracownik" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Id" Type="int" Mode="In" />
     <Parameter Name="Login" Type="varchar" Mode="In" />
@@ -428,22 +478,15 @@ warning 6002: The table/view 'Sklep.dbo.Wszyscy_pracownicy' does not have a prim
     <Parameter Name="Miasto" Type="varchar" Mode="In" />
     <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
   </Function>
-  <Function Name="Pracownicy_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="Login" Type="varchar" Mode="In" />
-    <Parameter Name="Haslo" Type="varchar" Mode="In" />
-    <Parameter Name="Imie" Type="varchar" Mode="In" />
-    <Parameter Name="Nazwisko" Type="varchar" Mode="In" />
-    <Parameter Name="Uprawnienia" Type="varchar" Mode="In" />
-    <Parameter Name="Tel_1" Type="varchar" Mode="In" />
-    <Parameter Name="Tel_2" Type="varchar" Mode="In" />
-    <Parameter Name="Fax" Type="varchar" Mode="In" />
-    <Parameter Name="Email" Type="varchar" Mode="In" />
-    <Parameter Name="WWW" Type="varchar" Mode="In" />
-    <Parameter Name="Kraj" Type="varchar" Mode="In" />
-    <Parameter Name="Region" Type="varchar" Mode="In" />
-    <Parameter Name="Miasto" Type="varchar" Mode="In" />
-    <Parameter Name="KodPocztowy" Type="varchar" Mode="In" />
+  <Function Name="MoveItemsFromCartToOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="OrderId" Type="int" Mode="In" />
   </Function>
+  <Function Name="RaportKlientowBezZamowien" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RaportKlientowOKtorzyNajwiecejWydali" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RaportKlientowONajwiększejLiczbieZamówień" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RaportPracownikówOrazLiczbyZamówień" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="RaportZamówieńWRealizacji" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
     <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -474,6 +517,14 @@ warning 6002: The table/view 'Sklep.dbo.Wszyscy_pracownicy' does not have a prim
     <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Update_Szczegoly_Zam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Szczegoly_ZamId" Type="int" Mode="In" />
+    <Parameter Name="ZamId" Type="int" Mode="In" />
+    <Parameter Name="ProduktId" Type="int" Mode="In" />
+    <Parameter Name="CenaJednostkowa" Type="decimal" Mode="In" />
+    <Parameter Name="LiczbaProduktow" Type="int" Mode="In" />
+    <Parameter Name="Rabat" Type="real" Mode="In" />
+  </Function>
   <EntityContainer Name="SklepModelStoreContainer">
     <EntitySet Name="Dostawcy" EntityType="Self.Dostawcy" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Egzemplarz" EntityType="Self.Egzemplarz" Schema="dbo" store:Type="Tables" />
@@ -553,24 +604,17 @@ warning 6002: The table/view 'Sklep.dbo.Wszyscy_pracownicy' does not have a prim
     [Serwisanci].[KodPocztowy] AS [KodPocztowy]
     FROM [dbo].[Serwisanci] AS [Serwisanci]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="Wszyscy_pracownicy" EntityType="Self.Wszyscy_pracownicy" store:Type="Views" store:Schema="dbo">
+    <EntitySet Name="SzczegolyZamowieniaView" EntityType="Self.SzczegolyZamowieniaView" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [Wszyscy_pracownicy].[PracownikId] AS [PracownikId], 
-    [Wszyscy_pracownicy].[Login] AS [Login], 
-    [Wszyscy_pracownicy].[Haslo] AS [Haslo], 
-    [Wszyscy_pracownicy].[Imie] AS [Imie], 
-    [Wszyscy_pracownicy].[Nazwisko] AS [Nazwisko], 
-    [Wszyscy_pracownicy].[Uprawnienia] AS [Uprawnienia], 
-    [Wszyscy_pracownicy].[Tel_1] AS [Tel_1], 
-    [Wszyscy_pracownicy].[Tel_2] AS [Tel_2], 
-    [Wszyscy_pracownicy].[Fax] AS [Fax], 
-    [Wszyscy_pracownicy].[Email] AS [Email], 
-    [Wszyscy_pracownicy].[WWW] AS [WWW], 
-    [Wszyscy_pracownicy].[Kraj] AS [Kraj], 
-    [Wszyscy_pracownicy].[Region] AS [Region], 
-    [Wszyscy_pracownicy].[Miasto] AS [Miasto], 
-    [Wszyscy_pracownicy].[KodPocztowy] AS [KodPocztowy]
-    FROM [dbo].[Wszyscy_pracownicy] AS [Wszyscy_pracownicy]</DefiningQuery>
+    [SzczegolyZamowieniaView].[ZamowienieId] AS [ZamowienieId], 
+    [SzczegolyZamowieniaView].[NazwaProduktu] AS [NazwaProduktu], 
+    [SzczegolyZamowieniaView].[CenaJednostkowa] AS [CenaJednostkowa], 
+    [SzczegolyZamowieniaView].[Cena] AS [Cena], 
+    [SzczegolyZamowieniaView].[Ilosc] AS [Ilosc], 
+    [SzczegolyZamowieniaView].[Rabat] AS [Rabat], 
+    [SzczegolyZamowieniaView].[IloscNaJednostke] AS [IloscNaJednostke], 
+    [SzczegolyZamowieniaView].[Opis] AS [Opis]
+    FROM [dbo].[SzczegolyZamowieniaView] AS [SzczegolyZamowieniaView]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__Egzemplar__Produ__37A5467C" Association="Self.FK__Egzemplar__Produ__37A5467C">
       <End Role="Produkty" EntitySet="Produkty" />

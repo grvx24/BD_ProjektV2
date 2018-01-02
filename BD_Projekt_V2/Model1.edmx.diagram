@@ -24,13 +24,13 @@
         <EntityTypeShape EntityType="SklepModel.Administratorzy" Width="1.5" PointX="7.75" PointY="7.75" />
         <EntityTypeShape EntityType="SklepModel.Pracownicy_z_Polski" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="SklepModel.Serwisanci" Width="1.5" PointX="9.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SklepModel.Wszyscy_pracownicy" Width="1.5" PointX="10.75" PointY="0.75" />
         <EntityTypeShape EntityType="SklepModel.Koszyk_Przedmiot" Width="1.5" PointX="9" PointY="13.125" />
         <AssociationConnector Association="SklepModel.FK__Koszyk_Pr__Klien__02FC7413" />
         <AssociationConnector Association="SklepModel.FK__Koszyk_Pr__Produ__03F0984C" />
         <EntityTypeShape EntityType="SklepModel.Egzemplarz" Width="1.5" PointX="5.25" PointY="4.75" />
         <AssociationConnector Association="SklepModel.FK__Egzemplar__Produ__37A5467C" />
         <EntityTypeShape EntityType="SklepModel.KoszykView" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SklepModel.SzczegolyZamowieniaView" Width="1.5" PointX="12.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

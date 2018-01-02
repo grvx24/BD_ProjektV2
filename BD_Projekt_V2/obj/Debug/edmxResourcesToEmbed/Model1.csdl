@@ -341,7 +341,6 @@
     <EntitySet Name="Administratorzy" EntityType="SklepModel.Administratorzy" />
     <EntitySet Name="Pracownicy_z_Polski" EntityType="SklepModel.Pracownicy_z_Polski" />
     <EntitySet Name="Serwisanci" EntityType="SklepModel.Serwisanci" />
-    <EntitySet Name="Wszyscy_pracownicy" EntityType="SklepModel.Wszyscy_pracownicy" />
     <EntitySet Name="Koszyk_Przedmiot" EntityType="SklepModel.Koszyk_Przedmiot" />
     <AssociationSet Name="FK__Koszyk_Pr__Klien__02FC7413" Association="SklepModel.FK__Koszyk_Pr__Klien__02FC7413">
       <End Role="Klienci" EntitySet="Klienci" />
@@ -357,6 +356,71 @@
       <End Role="Egzemplarz" EntitySet="Egzemplarz" />
     </AssociationSet>
     <EntitySet Name="KoszykView" EntityType="SklepModel.KoszykView" />
+    <FunctionImport Name="AddKlient">
+      <Parameter Name="Login" Mode="In" Type="String" />
+      <Parameter Name="Haslo" Mode="In" Type="String" />
+      <Parameter Name="Imie" Mode="In" Type="String" />
+      <Parameter Name="Nazwisko" Mode="In" Type="String" />
+      <Parameter Name="Firma" Mode="In" Type="String" />
+      <Parameter Name="Tel_1" Mode="In" Type="String" />
+      <Parameter Name="Tel_2" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="WWW" Mode="In" Type="String" />
+      <Parameter Name="Kraj" Mode="In" Type="String" />
+      <Parameter Name="Region" Mode="In" Type="String" />
+      <Parameter Name="Miasto" Mode="In" Type="String" />
+      <Parameter Name="KodPocztowy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Add_Szczegoly_Zam">
+      <Parameter Name="ZamId" Mode="In" Type="Int32" />
+      <Parameter Name="ProduktId" Mode="In" Type="Int32" />
+      <Parameter Name="LiczbaProduktow" Mode="In" Type="Int32" />
+      <Parameter Name="Rabat" Mode="In" Type="Single" />
+    </FunctionImport>
+    <FunctionImport Name="AddZamowienie">
+      <Parameter Name="KlientId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="BindPracownikToZamowienie">
+      <Parameter Name="ZamowienieId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ModifyKlient">
+      <Parameter Name="Id" Mode="In" Type="Int32" />
+      <Parameter Name="Login" Mode="In" Type="String" />
+      <Parameter Name="Haslo" Mode="In" Type="String" />
+      <Parameter Name="Imie" Mode="In" Type="String" />
+      <Parameter Name="Nazwisko" Mode="In" Type="String" />
+      <Parameter Name="Firma" Mode="In" Type="String" />
+      <Parameter Name="NIP" Mode="In" Type="String" />
+      <Parameter Name="REGON" Mode="In" Type="String" />
+      <Parameter Name="Tel_1" Mode="In" Type="String" />
+      <Parameter Name="Tel_2" Mode="In" Type="String" />
+      <Parameter Name="Fax" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="WWW" Mode="In" Type="String" />
+      <Parameter Name="Kraj" Mode="In" Type="String" />
+      <Parameter Name="Region" Mode="In" Type="String" />
+      <Parameter Name="Miasto" Mode="In" Type="String" />
+      <Parameter Name="KodPocztowy" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RaportKlientowBezZamowien" ReturnType="Collection(SklepModel.RaportKlientowBezZamowien_Result)" />
+    <FunctionImport Name="RaportKlientowOKtorzyNajwiecejWydali" ReturnType="Collection(SklepModel.RaportKlientowOKtorzyNajwiecejWydali_Result)" />
+    <FunctionImport Name="RaportKlientowONajwiększejLiczbieZamówień" ReturnType="Collection(SklepModel.RaportKlientowONajwiększejLiczbieZamówień_Result)" />
+    <FunctionImport Name="RaportPracownikówOrazLiczbyZamówień" ReturnType="Collection(SklepModel.RaportPracownikówOrazLiczbyZamówień_Result)" />
+    <FunctionImport Name="RaportZamówieńWRealizacji" ReturnType="Collection(SklepModel.RaportZamówieńWRealizacji_Result)" />
+    <FunctionImport Name="Update_Szczegoly_Zam">
+      <Parameter Name="Szczegoly_ZamId" Mode="In" Type="Int32" />
+      <Parameter Name="ZamId" Mode="In" Type="Int32" />
+      <Parameter Name="ProduktId" Mode="In" Type="Int32" />
+      <Parameter Name="CenaJednostkowa" Mode="In" Type="Decimal" />
+      <Parameter Name="LiczbaProduktow" Mode="In" Type="Int32" />
+      <Parameter Name="Rabat" Mode="In" Type="Single" />
+    </FunctionImport>
+    <FunctionImport Name="MoveItemsFromCartToOrder">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="OrderId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="SzczegolyZamowieniaView" EntityType="SklepModel.SzczegolyZamowieniaView" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -426,34 +490,6 @@
     <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Serwisanci">
-    <Key>
-      <PropertyRef Name="PracownikId" />
-      <PropertyRef Name="Login" />
-      <PropertyRef Name="Haslo" />
-      <PropertyRef Name="Imie" />
-      <PropertyRef Name="Nazwisko" />
-      <PropertyRef Name="Tel_1" />
-      <PropertyRef Name="Email" />
-      <PropertyRef Name="Kraj" />
-      <PropertyRef Name="Miasto" />
-    </Key>
-    <Property Name="PracownikId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Haslo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Uprawnienia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Tel_1" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Tel_2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Fax" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="WWW" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Kraj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Miasto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="KodPocztowy" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="Wszyscy_pracownicy">
     <Key>
       <PropertyRef Name="PracownikId" />
       <PropertyRef Name="Login" />
@@ -551,5 +587,49 @@
     <Property Name="NazwaKategorii" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
     <Property Name="LiczbaSztuk" Type="Int32" Nullable="false" />
     <Property Name="CenaJednostkowa" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+  </EntityType>
+  <ComplexType Name="RaportKlientowBezZamowien_Result">
+    <Property Type="Int32" Name="KlientId" Nullable="false" />
+    <Property Type="String" Name="Imie" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nazwisko" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="RaportKlientowOKtorzyNajwiecejWydali_Result">
+    <Property Type="Int32" Name="klientId" Nullable="false" />
+    <Property Type="Double" Name="Wydali" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="RaportKlientowONajwiększejLiczbieZamówień_Result">
+    <Property Type="Int32" Name="klientId" Nullable="false" />
+    <Property Type="Int32" Name="Ilosc" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="RaportPracownikówOrazLiczbyZamówień_Result">
+    <Property Type="Int32" Name="PracownikId" Nullable="false" />
+    <Property Type="String" Name="Login" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Imie" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="Nazwisko" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="ObslugiwaneZamowienia" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="RaportZamówieńWRealizacji_Result">
+    <Property Type="Int32" Name="ZamowienieId" Nullable="false" />
+    <Property Type="Int32" Name="KlientId" Nullable="false" />
+    <Property Type="DateTime" Name="DataZamowienia" Nullable="false" Precision="23" />
+  </ComplexType>
+  <EntityType Name="SzczegolyZamowieniaView">
+    <Key>
+      <PropertyRef Name="NazwaProduktu" />
+      <PropertyRef Name="CenaJednostkowa" />
+      <PropertyRef Name="Cena" />
+      <PropertyRef Name="Ilosc" />
+      <PropertyRef Name="Rabat" />
+      <PropertyRef Name="IloscNaJednostke" />
+      <PropertyRef Name="Opis" />
+    </Key>
+    <Property Name="NazwaProduktu" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CenaJednostkowa" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Cena" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="Ilosc" Type="Int32" Nullable="false" />
+    <Property Name="Rabat" Type="Single" Nullable="false" />
+    <Property Name="IloscNaJednostke" Type="Int32" Nullable="false" />
+    <Property Name="Opis" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ZamowienieId" Type="Int32" />
   </EntityType>
 </Schema>

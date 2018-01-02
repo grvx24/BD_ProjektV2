@@ -59,14 +59,26 @@
             <td>
                 @if (User.IsInRole("Klient"))
                 {
-                    @Html.ActionLink("Dodaj do koszyka", "AddToCart", "Home", new { Id = item.ProduktId, Login = User.Identity.Name, Count=1 },null);
+
+                    using (Html.BeginForm("AddToCart", "Home", FormMethod.Get))
+                    {
+                        @Html.Hidden("Id",item.ProduktId)
+                        @Html.TextBox("Count",1)
+                        <input type="Submit" id="btnSubmit" value="Dodaj do koszyka" />
+                    }
+                    //@Html.ActionLink("Dodaj do koszyka", "AddToCart", "Home", new { Id = item.ProduktId, Count=1 },null);
                 }           
             </td>
+
         </tr>
     }
 
 </table>
 
+
+<div>
+    @TempData["Error"]
+</div>
 
 
 

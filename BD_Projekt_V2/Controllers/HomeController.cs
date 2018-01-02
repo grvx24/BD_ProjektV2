@@ -38,11 +38,25 @@ namespace BD_Projekt_V2.Controllers
 
         public ActionResult Products(int id)
         {
-            ViewBag.Message = "Products";
+            if(id == -1)
+            {
+                ViewBag.Message = "Products";
 
-            var products = from p in db.Produkty where p.KategoriaId.Equals(id) select p;
+                var products = from p in db.Produkty select p;
 
-            return View(products.ToList());
+                return View(products.ToList());
+            }
+            else
+            {
+                ViewBag.Message = "Products";
+
+                var products = from p in db.Produkty where p.KategoriaId.Equals(id) select p;
+
+                return View(products.ToList());
+            }
+
+
+
         }
         [HttpPost]
         public ActionResult Products(string Name)
@@ -59,18 +73,36 @@ namespace BD_Projekt_V2.Controllers
             return View(products.ToList());
         }
 
-        public ActionResult AddToCart(int Id)
+        public ActionResult AddToCart(int Id,string Count)
         {
+            int newCount = Convert.ToInt32(Count);
+
             var user = db.Klienci.FirstOrDefault(l => l.Login == User.Identity.Name);
-            if (user != null)
+            try
             {
-                Koszyk_Przedmiot cartItem = new Koszyk_Przedmiot { KlientId = user.KlientId, ProduktId = Id, LiczbaSztuk = 1 };
+                if (user != null)
+                {
+                    Koszyk_Przedmiot cartItem = new Koszyk_Przedmiot { KlientId = user.KlientId, ProduktId = Id, LiczbaSztuk = newCount };
+                    var exists = (from k in db.Koszyk_Przedmiot where k.KlientId == user.KlientId && k.ProduktId == Id select k);
 
-                db.Koszyk_Przedmiot.Add(cartItem);
-                db.SaveChanges();
+                    if(exists.Any())
+                    {
+                        db.Entry(cartItem).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }else
+                    {
+                        db.Koszyk_Przedmiot.Add(cartItem);
+                        db.SaveChanges();
+                    }
+                }
+
+                return RedirectToAction("Index", "Cart");
             }
+            catch(Exception e)
+            {
+                TempData["Error"] = e.GetBaseException().Message;
+                return RedirectToAction("Products",new { id=-1 });            }
 
-            return RedirectToAction("Index");
         }
 
 

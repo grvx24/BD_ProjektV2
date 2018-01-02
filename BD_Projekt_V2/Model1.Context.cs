@@ -39,10 +39,10 @@ namespace BD_Projekt_V2
         public virtual DbSet<Administratorzy> Administratorzy { get; set; }
         public virtual DbSet<Pracownicy_z_Polski> Pracownicy_z_Polski { get; set; }
         public virtual DbSet<Serwisanci> Serwisanci { get; set; }
-        public virtual DbSet<Wszyscy_pracownicy> Wszyscy_pracownicy { get; set; }
         public virtual DbSet<Koszyk_Przedmiot> Koszyk_Przedmiot { get; set; }
         public virtual DbSet<Egzemplarz> Egzemplarz { get; set; }
         public virtual DbSet<KoszykView> KoszykView { get; set; }
+        public virtual DbSet<SzczegolyZamowieniaView> SzczegolyZamowieniaView { get; set; }
     
         public virtual int AddPracownik(string login, string haslo, string imie, string nazwisko, string uprawnienia, string tel_1, string tel_2, string fax, string email, string wWW, string kraj, string region, string miasto, string kodPocztowy)
         {
@@ -341,6 +341,246 @@ namespace BD_Projekt_V2
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int AddKlient(string login, string haslo, string imie, string nazwisko, string firma, string tel_1, string tel_2, string fax, string email, string wWW, string kraj, string region, string miasto, string kodPocztowy)
+        {
+            var loginParameter = login != null ?
+                new ObjectParameter("Login", login) :
+                new ObjectParameter("Login", typeof(string));
+    
+            var hasloParameter = haslo != null ?
+                new ObjectParameter("Haslo", haslo) :
+                new ObjectParameter("Haslo", typeof(string));
+    
+            var imieParameter = imie != null ?
+                new ObjectParameter("Imie", imie) :
+                new ObjectParameter("Imie", typeof(string));
+    
+            var nazwiskoParameter = nazwisko != null ?
+                new ObjectParameter("Nazwisko", nazwisko) :
+                new ObjectParameter("Nazwisko", typeof(string));
+    
+            var firmaParameter = firma != null ?
+                new ObjectParameter("Firma", firma) :
+                new ObjectParameter("Firma", typeof(string));
+    
+            var tel_1Parameter = tel_1 != null ?
+                new ObjectParameter("Tel_1", tel_1) :
+                new ObjectParameter("Tel_1", typeof(string));
+    
+            var tel_2Parameter = tel_2 != null ?
+                new ObjectParameter("Tel_2", tel_2) :
+                new ObjectParameter("Tel_2", typeof(string));
+    
+            var faxParameter = fax != null ?
+                new ObjectParameter("Fax", fax) :
+                new ObjectParameter("Fax", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var wWWParameter = wWW != null ?
+                new ObjectParameter("WWW", wWW) :
+                new ObjectParameter("WWW", typeof(string));
+    
+            var krajParameter = kraj != null ?
+                new ObjectParameter("Kraj", kraj) :
+                new ObjectParameter("Kraj", typeof(string));
+    
+            var regionParameter = region != null ?
+                new ObjectParameter("Region", region) :
+                new ObjectParameter("Region", typeof(string));
+    
+            var miastoParameter = miasto != null ?
+                new ObjectParameter("Miasto", miasto) :
+                new ObjectParameter("Miasto", typeof(string));
+    
+            var kodPocztowyParameter = kodPocztowy != null ?
+                new ObjectParameter("KodPocztowy", kodPocztowy) :
+                new ObjectParameter("KodPocztowy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddKlient", loginParameter, hasloParameter, imieParameter, nazwiskoParameter, firmaParameter, tel_1Parameter, tel_2Parameter, faxParameter, emailParameter, wWWParameter, krajParameter, regionParameter, miastoParameter, kodPocztowyParameter);
+        }
+    
+        public virtual int Add_Szczegoly_Zam(Nullable<int> zamId, Nullable<int> produktId, Nullable<int> liczbaProduktow, Nullable<float> rabat)
+        {
+            var zamIdParameter = zamId.HasValue ?
+                new ObjectParameter("ZamId", zamId) :
+                new ObjectParameter("ZamId", typeof(int));
+    
+            var produktIdParameter = produktId.HasValue ?
+                new ObjectParameter("ProduktId", produktId) :
+                new ObjectParameter("ProduktId", typeof(int));
+    
+            var liczbaProduktowParameter = liczbaProduktow.HasValue ?
+                new ObjectParameter("LiczbaProduktow", liczbaProduktow) :
+                new ObjectParameter("LiczbaProduktow", typeof(int));
+    
+            var rabatParameter = rabat.HasValue ?
+                new ObjectParameter("Rabat", rabat) :
+                new ObjectParameter("Rabat", typeof(float));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Add_Szczegoly_Zam", zamIdParameter, produktIdParameter, liczbaProduktowParameter, rabatParameter);
+        }
+    
+        public virtual int AddZamowienie(Nullable<int> klientId)
+        {
+            var klientIdParameter = klientId.HasValue ?
+                new ObjectParameter("KlientId", klientId) :
+                new ObjectParameter("KlientId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddZamowienie", klientIdParameter);
+        }
+    
+        public virtual int BindPracownikToZamowienie(Nullable<int> zamowienieId)
+        {
+            var zamowienieIdParameter = zamowienieId.HasValue ?
+                new ObjectParameter("ZamowienieId", zamowienieId) :
+                new ObjectParameter("ZamowienieId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("BindPracownikToZamowienie", zamowienieIdParameter);
+        }
+    
+        public virtual int ModifyKlient(Nullable<int> id, string login, string haslo, string imie, string nazwisko, string firma, string nIP, string rEGON, string tel_1, string tel_2, string fax, string email, string wWW, string kraj, string region, string miasto, string kodPocztowy)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var loginParameter = login != null ?
+                new ObjectParameter("Login", login) :
+                new ObjectParameter("Login", typeof(string));
+    
+            var hasloParameter = haslo != null ?
+                new ObjectParameter("Haslo", haslo) :
+                new ObjectParameter("Haslo", typeof(string));
+    
+            var imieParameter = imie != null ?
+                new ObjectParameter("Imie", imie) :
+                new ObjectParameter("Imie", typeof(string));
+    
+            var nazwiskoParameter = nazwisko != null ?
+                new ObjectParameter("Nazwisko", nazwisko) :
+                new ObjectParameter("Nazwisko", typeof(string));
+    
+            var firmaParameter = firma != null ?
+                new ObjectParameter("Firma", firma) :
+                new ObjectParameter("Firma", typeof(string));
+    
+            var nIPParameter = nIP != null ?
+                new ObjectParameter("NIP", nIP) :
+                new ObjectParameter("NIP", typeof(string));
+    
+            var rEGONParameter = rEGON != null ?
+                new ObjectParameter("REGON", rEGON) :
+                new ObjectParameter("REGON", typeof(string));
+    
+            var tel_1Parameter = tel_1 != null ?
+                new ObjectParameter("Tel_1", tel_1) :
+                new ObjectParameter("Tel_1", typeof(string));
+    
+            var tel_2Parameter = tel_2 != null ?
+                new ObjectParameter("Tel_2", tel_2) :
+                new ObjectParameter("Tel_2", typeof(string));
+    
+            var faxParameter = fax != null ?
+                new ObjectParameter("Fax", fax) :
+                new ObjectParameter("Fax", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("Email", email) :
+                new ObjectParameter("Email", typeof(string));
+    
+            var wWWParameter = wWW != null ?
+                new ObjectParameter("WWW", wWW) :
+                new ObjectParameter("WWW", typeof(string));
+    
+            var krajParameter = kraj != null ?
+                new ObjectParameter("Kraj", kraj) :
+                new ObjectParameter("Kraj", typeof(string));
+    
+            var regionParameter = region != null ?
+                new ObjectParameter("Region", region) :
+                new ObjectParameter("Region", typeof(string));
+    
+            var miastoParameter = miasto != null ?
+                new ObjectParameter("Miasto", miasto) :
+                new ObjectParameter("Miasto", typeof(string));
+    
+            var kodPocztowyParameter = kodPocztowy != null ?
+                new ObjectParameter("KodPocztowy", kodPocztowy) :
+                new ObjectParameter("KodPocztowy", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ModifyKlient", idParameter, loginParameter, hasloParameter, imieParameter, nazwiskoParameter, firmaParameter, nIPParameter, rEGONParameter, tel_1Parameter, tel_2Parameter, faxParameter, emailParameter, wWWParameter, krajParameter, regionParameter, miastoParameter, kodPocztowyParameter);
+        }
+    
+        public virtual ObjectResult<RaportKlientowBezZamowien_Result> RaportKlientowBezZamowien()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RaportKlientowBezZamowien_Result>("RaportKlientowBezZamowien");
+        }
+    
+        public virtual ObjectResult<RaportKlientowOKtorzyNajwiecejWydali_Result> RaportKlientowOKtorzyNajwiecejWydali()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RaportKlientowOKtorzyNajwiecejWydali_Result>("RaportKlientowOKtorzyNajwiecejWydali");
+        }
+    
+        public virtual ObjectResult<RaportKlientowONajwiększejLiczbieZamówień_Result> RaportKlientowONajwiększejLiczbieZamówień()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RaportKlientowONajwiększejLiczbieZamówień_Result>("RaportKlientowONajwiększejLiczbieZamówień");
+        }
+    
+        public virtual ObjectResult<RaportPracownikówOrazLiczbyZamówień_Result> RaportPracownikówOrazLiczbyZamówień()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RaportPracownikówOrazLiczbyZamówień_Result>("RaportPracownikówOrazLiczbyZamówień");
+        }
+    
+        public virtual ObjectResult<RaportZamówieńWRealizacji_Result> RaportZamówieńWRealizacji()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RaportZamówieńWRealizacji_Result>("RaportZamówieńWRealizacji");
+        }
+    
+        public virtual int Update_Szczegoly_Zam(Nullable<int> szczegoly_ZamId, Nullable<int> zamId, Nullable<int> produktId, Nullable<decimal> cenaJednostkowa, Nullable<int> liczbaProduktow, Nullable<float> rabat)
+        {
+            var szczegoly_ZamIdParameter = szczegoly_ZamId.HasValue ?
+                new ObjectParameter("Szczegoly_ZamId", szczegoly_ZamId) :
+                new ObjectParameter("Szczegoly_ZamId", typeof(int));
+    
+            var zamIdParameter = zamId.HasValue ?
+                new ObjectParameter("ZamId", zamId) :
+                new ObjectParameter("ZamId", typeof(int));
+    
+            var produktIdParameter = produktId.HasValue ?
+                new ObjectParameter("ProduktId", produktId) :
+                new ObjectParameter("ProduktId", typeof(int));
+    
+            var cenaJednostkowaParameter = cenaJednostkowa.HasValue ?
+                new ObjectParameter("CenaJednostkowa", cenaJednostkowa) :
+                new ObjectParameter("CenaJednostkowa", typeof(decimal));
+    
+            var liczbaProduktowParameter = liczbaProduktow.HasValue ?
+                new ObjectParameter("LiczbaProduktow", liczbaProduktow) :
+                new ObjectParameter("LiczbaProduktow", typeof(int));
+    
+            var rabatParameter = rabat.HasValue ?
+                new ObjectParameter("Rabat", rabat) :
+                new ObjectParameter("Rabat", typeof(float));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_Szczegoly_Zam", szczegoly_ZamIdParameter, zamIdParameter, produktIdParameter, cenaJednostkowaParameter, liczbaProduktowParameter, rabatParameter);
+        }
+    
+        public virtual int MoveItemsFromCartToOrder(Nullable<int> userId, Nullable<int> orderId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var orderIdParameter = orderId.HasValue ?
+                new ObjectParameter("OrderId", orderId) :
+                new ObjectParameter("OrderId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MoveItemsFromCartToOrder", userIdParameter, orderIdParameter);
         }
     }
 }

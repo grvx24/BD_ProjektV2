@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -162,6 +163,7 @@
     <Compile Include="Controllers\ProduktyController.cs" />
     <Compile Include="Controllers\SzczegolyZamowieniaController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Controllers\ZamowieniaController.cs" />
     <Compile Include="Dostawcy.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -209,6 +211,21 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RaportKlientowBezZamowien_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaportKlientowOKtorzyNajwiecejWydali_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaportKlientowONajwiększejLiczbieZamówień_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaportPracownikówOrazLiczbyZamówień_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaportZamówieńWRealizacji_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Serwisanci.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -224,7 +241,7 @@
     <Compile Include="SzczegolyZamowienia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Wszyscy_pracownicy.cs">
+    <Compile Include="SzczegolyZamowieniaView.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Zamowienia.cs">
@@ -330,8 +347,12 @@
     <Content Include="Views\Zamowienia\Edit.cshtml" />
     <Content Include="Views\Zamowienia\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Home\AddToCart.cshtml" />
     <Content Include="Views\Cart\Delete.cshtml" />
+    <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\User\EditUserInfo.cshtml" />
+    <Content Include="Views\User\UserOrders.cshtml" />
+    <Content Include="Views\User\OrderDetails.cshtml" />
+    <Content Include="Views\Vendor\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

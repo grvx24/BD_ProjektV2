@@ -130,7 +130,6 @@
     <FunctionImportMapping FunctionImportName="AddPracownik" FunctionName="SklepModel.Store.AddPracownik" />
     <FunctionImportMapping FunctionImportName="DeletePracownik" FunctionName="SklepModel.Store.DeletePracownik" />
     <FunctionImportMapping FunctionImportName="ModifyPracownik" FunctionName="SklepModel.Store.ModifyPracownik" />
-    <FunctionImportMapping FunctionImportName="Pracownicy_Insert" FunctionName="SklepModel.Store.Pracownicy_Insert" />
     <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="SklepModel.Store.sp_alterdiagram" />
     <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="SklepModel.Store.sp_creatediagram" />
     <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="SklepModel.Store.sp_dropdiagram" />
@@ -218,27 +217,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Wszyscy_pracownicy">
-      <EntityTypeMapping TypeName="SklepModel.Wszyscy_pracownicy">
-        <MappingFragment StoreEntitySet="Wszyscy_pracownicy">
-          <ScalarProperty Name="KodPocztowy" ColumnName="KodPocztowy" />
-          <ScalarProperty Name="Miasto" ColumnName="Miasto" />
-          <ScalarProperty Name="Region" ColumnName="Region" />
-          <ScalarProperty Name="Kraj" ColumnName="Kraj" />
-          <ScalarProperty Name="WWW" ColumnName="WWW" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Fax" ColumnName="Fax" />
-          <ScalarProperty Name="Tel_2" ColumnName="Tel_2" />
-          <ScalarProperty Name="Tel_1" ColumnName="Tel_1" />
-          <ScalarProperty Name="Uprawnienia" ColumnName="Uprawnienia" />
-          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
-          <ScalarProperty Name="Imie" ColumnName="Imie" />
-          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
-          <ScalarProperty Name="Login" ColumnName="Login" />
-          <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Koszyk_Przedmiot">
       <EntityTypeMapping TypeName="SklepModel.Koszyk_Przedmiot">
         <MappingFragment StoreEntitySet="Koszyk_Przedmiot">
@@ -265,6 +243,72 @@
           <ScalarProperty Name="NazwaProduktu" ColumnName="NazwaProduktu" />
           <ScalarProperty Name="ProduktId" ColumnName="ProduktId" />
           <ScalarProperty Name="KlientId" ColumnName="KlientId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="AddKlient" FunctionName="SklepModel.Store.AddKlient" />
+    <FunctionImportMapping FunctionImportName="Add_Szczegoly_Zam" FunctionName="SklepModel.Store.Add_Szczegoly_Zam" />
+    <FunctionImportMapping FunctionImportName="AddZamowienie" FunctionName="SklepModel.Store.AddZamowienie" />
+    <FunctionImportMapping FunctionImportName="BindPracownikToZamowienie" FunctionName="SklepModel.Store.BindPracownikToZamowienie" />
+    <FunctionImportMapping FunctionImportName="ModifyKlient" FunctionName="SklepModel.Store.ModifyKlient" />
+    <FunctionImportMapping FunctionImportName="RaportKlientowBezZamowien" FunctionName="SklepModel.Store.RaportKlientowBezZamowien">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SklepModel.RaportKlientowBezZamowien_Result">
+          <ScalarProperty Name="KlientId" ColumnName="KlientId" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RaportKlientowOKtorzyNajwiecejWydali" FunctionName="SklepModel.Store.RaportKlientowOKtorzyNajwiecejWydali">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SklepModel.RaportKlientowOKtorzyNajwiecejWydali_Result">
+          <ScalarProperty Name="klientId" ColumnName="klientId" />
+          <ScalarProperty Name="Wydali" ColumnName="Wydali" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RaportKlientowONajwiększejLiczbieZamówień" FunctionName="SklepModel.Store.RaportKlientowONajwiększejLiczbieZamówień">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SklepModel.RaportKlientowONajwiększejLiczbieZamówień_Result">
+          <ScalarProperty Name="klientId" ColumnName="klientId" />
+          <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RaportPracownikówOrazLiczbyZamówień" FunctionName="SklepModel.Store.RaportPracownikówOrazLiczbyZamówień">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SklepModel.RaportPracownikówOrazLiczbyZamówień_Result">
+          <ScalarProperty Name="PracownikId" ColumnName="PracownikId" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="ObslugiwaneZamowienia" ColumnName="ObslugiwaneZamowienia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RaportZamówieńWRealizacji" FunctionName="SklepModel.Store.RaportZamówieńWRealizacji">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SklepModel.RaportZamówieńWRealizacji_Result">
+          <ScalarProperty Name="ZamowienieId" ColumnName="ZamowienieId" />
+          <ScalarProperty Name="KlientId" ColumnName="KlientId" />
+          <ScalarProperty Name="DataZamowienia" ColumnName="DataZamowienia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Update_Szczegoly_Zam" FunctionName="SklepModel.Store.Update_Szczegoly_Zam" />
+    <FunctionImportMapping FunctionImportName="MoveItemsFromCartToOrder" FunctionName="SklepModel.Store.MoveItemsFromCartToOrder" />
+    <EntitySetMapping Name="SzczegolyZamowieniaView">
+      <EntityTypeMapping TypeName="SklepModel.SzczegolyZamowieniaView">
+        <MappingFragment StoreEntitySet="SzczegolyZamowieniaView">
+          <ScalarProperty Name="ZamowienieId" ColumnName="ZamowienieId" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="IloscNaJednostke" ColumnName="IloscNaJednostke" />
+          <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+          <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+          <ScalarProperty Name="CenaJednostkowa" ColumnName="CenaJednostkowa" />
+          <ScalarProperty Name="NazwaProduktu" ColumnName="NazwaProduktu" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
