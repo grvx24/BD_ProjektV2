@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BD_Projekt_V2.Zamowienia>
+
+@{
+    ViewBag.Title = "UserOrders";
+}
+
+<h2>Zamówienia dla użytkowika @Html.Display(User.Identity.Name)</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ZamowienieId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataZamowienia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusZamowienia)
+        </th>
+        <th>
+            @Html.DisplayName("Pracownik")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZamowienieId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataZamowienia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusZamowienia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pracownicy.Imie)
+            @Html.DisplayFor(modelItem => item.Pracownicy.Nazwisko)<br />
+            @Html.DisplayFor(modelItem => item.Pracownicy.Email)
+        </td>
+        <td>
+            @if (item.StatusZamowienia != "Zrealizowane")
+            {
+            using (Html.BeginForm("DeleteOrder", "User", FormMethod.Post))
+            {
+                @Html.Hidden("Id", item.ZamowienieId)
+                <input type="Submit" id="btnSubmit" value="Usuń" />
+            }
+            }
+
+            @using (Html.BeginForm("OrderDetails", "User", FormMethod.Post, new { target = "_blank" }))
+            {
+            @Html.Hidden("Id", item.ZamowienieId)
+            <input type="Submit" id="btnDetails" value="Szczegóły" />
+            }
+
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@TempData["Error"]

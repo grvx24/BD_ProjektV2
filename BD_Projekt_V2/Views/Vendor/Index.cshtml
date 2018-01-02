@@ -1,0 +1,61 @@
+﻿@model IEnumerable<BD_Projekt_V2.Zamowienia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataZamowienia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusZamowienia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klienci.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pracownicy.Login)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataZamowienia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusZamowienia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klienci.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pracownicy.Login)
+        </td>
+        <td>
+            @using (Html.BeginForm("ChangeOrder", "Vendor", FormMethod.Post))
+            {
+                @Html.Hidden("id",item.ZamowienieId)
+                <input id="changeOrderBtn" type="Submit" value="Zatwierdź zamówienie" />
+            }
+            @using (Html.BeginForm("DeleteOrder", "Vendor", FormMethod.Post))
+            {
+                @Html.Hidden("id",item.ZamowienieId)
+                <input id="deleteOrderBtn" type="Submit" value="Usuń" />
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+
+@TempData["Error"]

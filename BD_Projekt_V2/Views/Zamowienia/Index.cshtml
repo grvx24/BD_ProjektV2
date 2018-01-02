@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BD_Projekt_V2.Zamowienia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Zamówienia</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataZamowienia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusZamowienia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klienci.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Klienci.Nazwisko)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pracownicy.PracownikId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataZamowienia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusZamowienia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klienci.Imie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Klienci.Nazwisko)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pracownicy.PracownikId)
+        </td>
+        <td>
+            @Html.ActionLink("Edycja", "Edit", new { id=item.ZamowienieId }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.ZamowienieId }) |
+            @Html.ActionLink("Usuwanie", "Delete", new { id=item.ZamowienieId })
+        </td>
+    </tr>
+}
+
+</table>

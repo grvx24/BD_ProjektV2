@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BD_Projekt_V2.SzczegolyZamowienia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Szczegóły zamówienia</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilosc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rabat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produkty.NazwaProduktu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zamowienia.StatusZamowienia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ilosc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rabat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produkty.NazwaProduktu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zamowienia.StatusZamowienia)
+        </td>
+        <td>
+            @Html.ActionLink("Edycja", "Edit", new { id=item.SzczegolyZamId }) |
+            @Html.ActionLink("Usuwanie", "Delete", new { id=item.SzczegolyZamId })
+        </td>
+    </tr>
+}
+
+</table>

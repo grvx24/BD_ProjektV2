@@ -1,0 +1,26 @@
+﻿@model BD_Projekt_V2.Kategoria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Kategoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaKategorii)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaKategorii)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edycja", "Edit", new { id = Model.KategoriaId }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

@@ -1,0 +1,146 @@
+﻿@model BD_Projekt_V2.Klienci
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Klienci</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Haslo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Haslo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firma)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NIP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NIP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REGON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REGON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel_1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel_2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel_2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WWW)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WWW)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kraj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kraj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KodPocztowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KodPocztowy)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KlientId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

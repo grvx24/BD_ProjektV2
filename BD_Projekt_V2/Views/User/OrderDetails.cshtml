@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BD_Projekt_V2.SzczegolyZamowieniaView>
+
+@{
+    ViewBag.Title = "OrderDetails";
+}
+
+<h2>OrderDetails</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaProduktu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CenaJednostkowa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ilosc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IloscNaJednostke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rabat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazwaProduktu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CenaJednostkowa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ilosc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IloscNaJednostke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rabat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opis)
+        </td>
+        <td></td>
+    </tr>
+}
+
+</table>

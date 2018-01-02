@@ -1,0 +1,58 @@
+﻿@model BD_Projekt_V2.SzczegolyZamowienia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>SzczegolyZamowienia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ilosc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ilosc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rabat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rabat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Produkty.NazwaProduktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produkty.NazwaProduktu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zamowienia.StatusZamowienia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zamowienia.StatusZamowienia)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edycja", "Edit", new { id = Model.SzczegolyZamId }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

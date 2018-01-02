@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BD_Projekt_V2.Kategoria>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Kategorie</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaKategorii)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazwaKategorii)
+        </td>
+        <td>
+            @Html.ActionLink("Edycja", "Edit", new { id=item.KategoriaId }) |
+            @Html.ActionLink("Usuwanie", "Delete", new { id=item.KategoriaId })
+        </td>
+    </tr>
+}
+
+</table>

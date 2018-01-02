@@ -1,0 +1,96 @@
+﻿@model BD_Projekt_V2.Dostawcy
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Usuwanie</h2>
+
+<h3>Czy na pewno chcesz to usunąć?</h3>
+<div>
+    <h4>Dostawcy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaFirmy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaFirmy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaKontaktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaKontaktu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KodPocztowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KodPocztowy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kraj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kraj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Powrót", "Index")
+        </div>
+    }
+</div>

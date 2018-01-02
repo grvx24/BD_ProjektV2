@@ -1,0 +1,90 @@
+﻿@model BD_Projekt_V2.Dostawcy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Dostawcy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaFirmy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaFirmy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NazwaKontaktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazwaKontaktu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miasto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KodPocztowy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KodPocztowy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kraj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kraj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edycja", "Edit", new { id = Model.DostawcaId }) |
+    @Html.ActionLink("Powrót", "Index")
+</p>

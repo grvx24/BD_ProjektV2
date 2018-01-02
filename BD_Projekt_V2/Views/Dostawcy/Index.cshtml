@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BD_Projekt_V2.Dostawcy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Dostawcy</h2>
+
+<p>
+    @Html.ActionLink("Dodaj", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaFirmy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaKontaktu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miasto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KodPocztowy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kraj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazwaFirmy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazwaKontaktu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Miasto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KodPocztowy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kraj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.ActionLink("Edycja", "Edit", new { id=item.DostawcaId }) |           
+            @Html.ActionLink("Usuwanie", "Delete", new { id=item.DostawcaId })
+        </td>
+    </tr>
+}
+
+</table>

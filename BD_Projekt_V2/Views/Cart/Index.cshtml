@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BD_Projekt_V2.KoszykView>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Koszyk</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaProduktu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NazwaKategorii)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LiczbaSztuk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CenaJednostkowa)
+        </th>
+        
+        <th></th>
+    </tr>
+
+
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazwaProduktu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazwaKategorii)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LiczbaSztuk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CenaJednostkowa)
+            </td>
+            <td>
+                @Html.ActionLink("Usuń","Delete",new {id =  item.ProduktId})
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @using (Html.BeginForm("CreateOrder", "Cart"))
+    {
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Złóż zamówienie" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+
+
+</p>
+
+@TempData["Order"]
+@TempData["Error"]
+
+
+
+

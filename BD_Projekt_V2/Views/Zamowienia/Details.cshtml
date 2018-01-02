@@ -1,0 +1,57 @@
+﻿@model BD_Projekt_V2.Zamowienia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Zamowienia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataZamowienia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataZamowienia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusZamowienia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusZamowienia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Klienci.Imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klienci.Imie)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Klienci.Nazwisko)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klienci.Nazwisko)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pracownicy.PracownikId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pracownicy.PracownikId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edycja", "Edit", new { id = Model.ZamowienieId }) |
+    @Html.ActionLink("Powrót do listy", "Index")
+</p>

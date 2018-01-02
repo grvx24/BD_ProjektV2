@@ -1,0 +1,34 @@
+﻿@model IEnumerable<BD_Projekt_V2.Administratorzy>
+
+@{
+    ViewBag.Title = "AdminsList";
+}
+
+<h2>AdminsList</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </th>
+    </tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(model => item.Imie)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Nazwisko)
+        </td>
+    </tr>
+}
+
+
+
+</table>
+
